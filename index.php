@@ -1,5 +1,5 @@
 <?php
-require_once('./config/configuration.php');
+require_once('./config/config.php');
 
 
 //On démare la session
@@ -7,10 +7,10 @@ session_start();
 
 //Si l'utilisateur n'avait pas encore de session, on lui créer un id unique
 if (!isset($_SESSION['id'])) {
-    $_SESSION['customer_id'] = 0;
-    $_SESSION['id'] = uniqid();
-    $_SESSION['admin'] = false;
-    $_SESSION['connected'] = false;
+	$_SESSION['customer_id'] = 0;
+	$_SESSION['id'] = uniqid();
+	$_SESSION['admin'] = false;
+	$_SESSION['connected'] = false;
 }
 
 
@@ -38,3 +38,17 @@ require_once(PATH_CONTROLLERS . $page . '.php');
 
 
 require_once(PATH_SHARED_VIEWS . 'footer.php');
+
+
+
+
+
+
+
+
+
+
+
+require 'Controleur/Routeur.php';
+$routeur = new Routeur();
+$routeur->routerRequete();
