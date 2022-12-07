@@ -11,3 +11,4 @@ define('PATH_SHARED_VIEWS', './views/shared/v_');
 define('PATH_VIEWS', './views/v_');
 define('PATH_MODELS', './models/m_');
 define('PATH_CONTROLLERS', './controllers/m_c');
+define('GABARIT', './views/gabarit.php');
