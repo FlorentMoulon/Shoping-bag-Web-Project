@@ -1,7 +1,7 @@
 <?php
-require_once 'PATH_CONTROLLERS/home.php';
-require_once 'PATH_CONTROLLERS/commande.php';
-require_once 'Vue/Vue.php';
+require_once PATH_CONTROLLERS . 'home.php';
+require_once PATH_MODELS . 'commande.php';
+require_once PATH_VIEWS . 'View.php';
 
 
 class Routeur

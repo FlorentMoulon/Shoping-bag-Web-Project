@@ -9,7 +9,7 @@ class View
     public function __construct($action)
     {
         // Détermination du nom du fichier vue à partir de l'action
-        $this->fichier = "Vue/vue" . $action . ".php";
+        $this->fichier = PATH_VIEWS . $action . ".php";
     }
 
     // Génère et affiche la vue public
@@ -18,7 +18,7 @@ class View
         // Génération de la partie spécifique de la vue
         $contenu = $this->genererFichier($this->fichier, $donnees);
         // Génération du gabarit commun utilisant la partie spécifique
-        $vue = $this->genererFichier('Vue/gabarit.php', array('titre' => $this->titre, 'contenu' => $contenu));
+        $vue = $this->genererFichier(GABARIT, array('titre' => $this->titre, 'contenu' => $contenu));
         // Renvoi de la vue au navigateur 
         echo $vue;
     }
