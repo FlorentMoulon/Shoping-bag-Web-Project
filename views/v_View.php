@@ -10,9 +10,9 @@ class View
     {
         // Détermination du nom du fichier vue à partir de l'action
         $this->fichier = PATH_VIEWS . $action . ".php";
+        $this->titre = $action;
     }
 
-    // Génère et affiche la vue public
     function generer($donnees)
     {
         // Génération de la partie spécifique de la vue
