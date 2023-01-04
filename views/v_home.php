@@ -9,9 +9,8 @@
     une large gamme de produits.
 </p>
 
-<form method="post" action="index.php?action=boisson">
-    <input type="submit" value="boisson" />
-</form>
 
+<a href="index.php?action=boissons">Boissons</a>
+<a href="index.php?action=biscuits">Biscuits</a>
 
 <?php $contenu = ob_get_clean(); ?>

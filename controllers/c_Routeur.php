@@ -1,6 +1,7 @@
 <?php
 require_once PATH_CONTROLLERS . 'home.php';
 require_once PATH_CONTROLLERS . 'boisson.php';
+require_once PATH_CONTROLLERS . 'biscuit.php';
 
 require_once PATH_MODELS . 'commande.php';
 require_once PATH_VIEWS . 'View.php';
@@ -10,11 +11,13 @@ class Routeur
 {
     private $c_home;
     private $c_boisson;
+    private $c_biscuit;
 
     public function __construct()
     {
         $this->c_home = new C_Home();
         $this->c_boisson = new C_Boisson();
+        $this->c_biscuit = new C_Biscuit();
     }
 
     // Recherche un paramètre dans un tableau
@@ -31,14 +34,26 @@ class Routeur
     {
         try {
             if (isset($_GET['action'])) {
-                echo "******************" . $_GET['action'] . "********************";
                 //Page des boissons
-                if ($_GET['action'] == 'boisson') {
+                if ($_GET['action'] == 'boissons') {
+                    $this->c_boisson->boissons();
+                } else if ($_GET['action'] == 'boisson') {
                     $idBoisson = intval($this->getParametre($_GET, 'id'));
                     if ($idBoisson != 0) {
                         $this->c_boisson->boisson($idBoisson);
                     } else throw new Exception("Identifiant de boisson non valide");
-                } else {
+                }
+                //Page des biscuits
+                else if ($_GET['action'] == 'biscuits') {
+                    $this->c_biscuit->biscuits();
+                } else if ($_GET['action'] == 'biscuit') {
+                    $idBiscuit = intval($this->getParametre($_GET, 'id'));
+                    if ($idBiscuit != 0) {
+                        $this->c_biscuit->biscuit($idBiscuit);
+                    } else throw new Exception("Identifiant de boisson non valide");
+                }
+                //Action invalide
+                else {
                     throw new Exception("Action non valide");
                     echo $_GET['action'];
                 }
@@ -47,6 +62,7 @@ class Routeur
             }
         } catch (Exception $e) {
             echo "je suis dans l'erreur";
+            echo "******************" . $_GET['action'] . "********************";
             $this->erreur($e->getMessage());
         }
     }
