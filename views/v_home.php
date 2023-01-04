@@ -1,3 +1,7 @@
+<?php $titre = "Home"; ?>
+
+<?php ob_start(); ?>
+
 <h1>Bienvenue!!</h1>
 <p>
     Bienvenue sur ISIWeb4Shop .
@@ -5,7 +9,9 @@
     une large gamme de produits.
 </p>
 
-<form method="post" action="index.php?action=commenter">
-    <input type="hidden" name="id" value="<?= $billet['id'] ?>" />
+<form method="post" action="index.php?action=boisson">
     <input type="submit" value="boisson" />
 </form>
+
+
+<?php $contenu = ob_get_clean(); ?>
