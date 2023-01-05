@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css" />
     <title><?= $titre ?></title>
 </head>
 
