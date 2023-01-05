@@ -4,10 +4,8 @@
       <a class="navbar-brand" href="#">ISIWEB4SHOP</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
-      <li><a href="#">Page 3</a></li>
+      <li class="active"><a href="#">Accueil</a></li>
+      <li class="pull-right"><a href="#"><span class="glyphicon glyphicon-shopping-cart"> Panier </span></a></li>
     </ul>
   </div>
 </nav>
