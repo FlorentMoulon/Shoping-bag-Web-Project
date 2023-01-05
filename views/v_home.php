@@ -12,5 +12,6 @@
 
 <a href="index.php?action=boissons">Boissons</a>
 <a href="index.php?action=biscuits">Biscuits</a>
+<a href="index.php?action=fruitsSecs">Fruits Secs</a>
 
 <?php $contenu = ob_get_clean(); ?>
