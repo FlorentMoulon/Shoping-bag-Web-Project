@@ -3,7 +3,7 @@ require_once PATH_MODELS . 'Model.php';
 
 class BIscuit extends Model
 {
-    // Renvoie la liste des billets du blog public
+    // Renvoie la liste des bisuits
     function getBiscuits()
     {
         $sql = 'select ';
@@ -11,7 +11,7 @@ class BIscuit extends Model
         return   $biscuits;
     }
 
-    // Renvoie les informations sur un billet public
+    // Renvoie les informations sur un biscuit précis
     function getBiscuit($idBiscuit)
     {
         $sql = 'select '

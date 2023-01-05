@@ -10,8 +10,7 @@
       <li><a href="index.php?action=biscuits">Biscuits</a></li>
       <li><a href="index.php?action=fruitsSecs">Fruits Secs</a></li>
       <li><a href="index.php?action=connexion">Connexion</a></li>
-      <li class="pull-right"><a href="#"><span class="glyphicon glyphicon-shopping-cart"> Panier </span></a></li>
-
+      <li class="pull-right"><a href="index.php?action=panier"><span class="glyphicon glyphicon-shopping-cart"> Panier </span></a></li>
     </ul>
   </div>
 </nav>

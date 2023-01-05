@@ -3,7 +3,7 @@ require_once PATH_MODELS . 'Model.php';
 
 class Boisson extends Model
 {
-    // Renvoie la liste des billets du blog public
+    // Renvoie la liste des boissons
     function getBoissons()
     {
         $sql = 'select ';
@@ -11,7 +11,7 @@ class Boisson extends Model
         return   $boissons;
     }
 
-    // Renvoie les informations sur un billet public
+    // Renvoie les informations sur une boisson précise
     function getBoisson($idBoisson)
     {
         $sql = 'select '
