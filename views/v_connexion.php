@@ -6,11 +6,7 @@
 
 <p>
     Merci d'entrer votre identifiant et votre mot de passe pour acceder à votre espace client. Si vous n'avez pas
-<<<<<<< HEAD
     de compte client vous pouvez en créér un gratuitement ici : <a href="index.php?action=enregistrement"><b>Enregistrement</b></a>.
-=======
-    de compte dient vous pouvez en créér un gratuitement ici : <a href="index.php?action=enregistrement"><b>Enregistrement</b></a>.
->>>>>>> b1f6291082226d9c7a5ce6c512159cdf36adfd8e
 </p>
 
 <form action="index.php?action=connexion" method="post">
@@ -20,11 +16,7 @@
     <label for="Password">Password</label>
     <input type="password" id="Password" name="Password">
 
-<<<<<<< HEAD
     <input type="submit" name="connexion" id="connexion" value="Connexion">
-=======
-    <input type="submit" name="Connexion" id="Connexion" value="Connexion">
->>>>>>> b1f6291082226d9c7a5ce6c512159cdf36adfd8e
 </form>
 <?php 
 //Lorsque le formulaire est soumis
