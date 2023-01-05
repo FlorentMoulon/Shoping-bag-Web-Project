@@ -18,4 +18,10 @@ class C_Connexion
         $vue = new View("connexion");
         $vue->generer(array());
     }
+
+    public function enregistrement()
+    {
+        $vue = new View("enregistrement");
+        $vue->generer(array());
+    }
 }

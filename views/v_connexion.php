@@ -2,10 +2,10 @@
 
 <?php ob_start(); ?>
 
-<h1>Idnetification Client</h1>
+<h1>Identification Client</h1>
 
 <p>
-    Merci d'en trer votre identifiant et votre mot de passe pour acceder à votre espace dient. Si vous n'avez pas
+    Merci d'entrer votre identifiant et votre mot de passe pour acceder à votre espace client. Si vous n'avez pas
     de compte dient vous pouvez en créér un gratuitement ici : <a href="index.php?action=enregistrement"><b>Enregistrement</b></a>.
 </p>
 
@@ -16,7 +16,7 @@
     <label for="Password">Password</label>
     <input type="password" id="Password" name="Password">
 
-    <input type="submit" name="connexion" id="connexion">
+    <input type="submit" name="Connexion" id="Connexion" value="Connexion">
 </form>
 
 <?php $contenu = ob_get_clean(); ?>

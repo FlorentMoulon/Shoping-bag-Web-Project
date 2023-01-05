@@ -4,8 +4,8 @@ require_once PATH_CONTROLLERS . 'boisson.php';
 require_once PATH_CONTROLLERS . 'biscuit.php';
 require_once PATH_CONTROLLERS . 'fruitSec.php';
 require_once PATH_CONTROLLERS . 'connexion.php';
+require_once PATH_CONTROLLERS . 'panier.php';
 
-require_once PATH_MODELS . 'commande.php';
 require_once PATH_VIEWS . 'View.php';
 
 
@@ -16,6 +16,7 @@ class Routeur
     private $c_biscuit;
     private $c_fruitSec;
     private $c_connexion;
+    private $c_panier;
 
     public function __construct()
     {
@@ -24,6 +25,7 @@ class Routeur
         $this->c_biscuit = new C_Biscuit();
         $this->c_fruitSec = new C_FruitSec();
         $this->c_connexion = new C_Connexion();
+        $this->c_panier = new C_Panier();
     }
 
     // Recherche un paramètre dans un tableau
@@ -67,9 +69,15 @@ class Routeur
                         $this->c_fruitSec->fruitSec($idFruitSec);
                     } else throw new Exception("Identifiant de boisson non valide");
                 }
-                //Page des fruits secs
+                //Page de connexion
                 else if ($_GET['action'] == 'connexion') {
                     $this->c_connexion->connexion();
+                } else if ($_GET['action'] == 'enregistrement') {
+                    $this->c_connexion->enregistrement();
+                }
+                //Panier
+                else if ($_GET['action'] == 'panier') {
+                    $this->c_panier->panier();
                 }
                 //Action invalide
                 else {

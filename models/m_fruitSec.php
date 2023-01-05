@@ -3,7 +3,7 @@ require_once PATH_MODELS . 'Model.php';
 
 class FruitSec extends Model
 {
-    // Renvoie la liste des billets du blog public
+    // Renvoie la liste des fruits secs
     function getFruitsSecs()
     {
         $sql = 'select ';
@@ -11,7 +11,7 @@ class FruitSec extends Model
         return   $fruitsSecs;
     }
 
-    // Renvoie les informations sur un billet public
+    // Renvoie les informations sur un fruit sec précis
     function getFruitSec($idFruitSec)
     {
         $sql = 'select '
