@@ -8,20 +8,24 @@ require_once(PATH_VIEWS . 'View.php');
 
 class C_Boisson
 {
+    private $boisson;
+
     public function __construct()
     {
+        $this->boisson = new Boisson();
     }
 
     // Affiche la liste de toute les boissons
     public function boissons()
     {
         $vue = new View("boissons");
-        $vue->generer(array());
+        $donnes = array('boissons' => $this->boisson->getBoissons());
+        $vue->generer($donnes);
     }
 
 
 
-    //A faire
+    // A faire
     // Affiche une boisson spécifique
     public function boisson($idBoisson)
     {

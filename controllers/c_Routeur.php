@@ -40,58 +40,58 @@ class Routeur
     // Traite une requête entrante 
     public function routerRequete()
     {
-        try {
-            if (isset($_GET['action'])) {
-                //Page des boissons
-                if ($_GET['action'] == 'boissons') {
-                    $this->c_boisson->boissons();
-                } else if ($_GET['action'] == 'boisson') {
-                    $idBoisson = intval($this->getParametre($_GET, 'id'));
-                    if ($idBoisson != 0) {
-                        $this->c_boisson->boisson($idBoisson);
-                    } else throw new Exception("Identifiant de boisson non valide");
-                }
-                //Page des biscuits
-                else if ($_GET['action'] == 'biscuits') {
-                    $this->c_biscuit->biscuits();
-                } else if ($_GET['action'] == 'biscuit') {
-                    $idBiscuit = intval($this->getParametre($_GET, 'id'));
-                    if ($idBiscuit != 0) {
-                        $this->c_biscuit->biscuit($idBiscuit);
-                    } else throw new Exception("Identifiant de boisson non valide");
-                }
-                //Page des fruits secs
-                else if ($_GET['action'] == 'fruitsSecs') {
-                    $this->c_fruitSec->fruitsSecs();
-                } else if ($_GET['action'] == 'fruitSec') {
-                    $idFruitSec = intval($this->getParametre($_GET, 'id'));
-                    if ($idFruitSec != 0) {
-                        $this->c_fruitSec->fruitSec($idFruitSec);
-                    } else throw new Exception("Identifiant de boisson non valide");
-                }
-                //Page de connexion
-                else if ($_GET['action'] == 'connexion') {
-                    $this->c_connexion->connexion();
-                } else if ($_GET['action'] == 'enregistrement') {
-                    $this->c_connexion->enregistrement();
-                }
-                //Panier
-                else if ($_GET['action'] == 'panier') {
-                    $this->c_panier->panier();
-                }
-                //Action invalide
-                else {
-                    throw new Exception("Action non valide");
-                    echo $_GET['action'];
-                }
-            } else { // aucune action définie : affichage de l'accueil
-                $this->c_home->home();
+        //try {
+        if (isset($_GET['action'])) {
+            //Page des boissons
+            if ($_GET['action'] == 'boissons') {
+                $this->c_boisson->boissons();
+            } else if ($_GET['action'] == 'boisson') {
+                $idBoisson = intval($this->getParametre($_GET, 'id'));
+                if ($idBoisson != 0) {
+                    $this->c_boisson->boisson($idBoisson);
+                } else throw new Exception("Identifiant de boisson non valide");
             }
-        } catch (Exception $e) {
-            echo "je suis dans l'erreur";
+            //Page des biscuits
+            else if ($_GET['action'] == 'biscuits') {
+                $this->c_biscuit->biscuits();
+            } else if ($_GET['action'] == 'biscuit') {
+                $idBiscuit = intval($this->getParametre($_GET, 'id'));
+                if ($idBiscuit != 0) {
+                    $this->c_biscuit->biscuit($idBiscuit);
+                } else throw new Exception("Identifiant de boisson non valide");
+            }
+            //Page des fruits secs
+            else if ($_GET['action'] == 'fruitsSecs') {
+                $this->c_fruitSec->fruitsSecs();
+            } else if ($_GET['action'] == 'fruitSec') {
+                $idFruitSec = intval($this->getParametre($_GET, 'id'));
+                if ($idFruitSec != 0) {
+                    $this->c_fruitSec->fruitSec($idFruitSec);
+                } else throw new Exception("Identifiant de boisson non valide");
+            }
+            //Page de connexion
+            else if ($_GET['action'] == 'connexion') {
+                $this->c_connexion->connexion();
+            } else if ($_GET['action'] == 'enregistrement') {
+                $this->c_connexion->enregistrement();
+            }
+            //Panier
+            else if ($_GET['action'] == 'panier') {
+                $this->c_panier->panier();
+            }
+            //Action invalide
+            else {
+                throw new Exception("Action non valide");
+                echo $_GET['action'];
+            }
+        } else { // aucune action définie : affichage de l'accueil
+            $this->c_home->home();
+        }
+        /*} catch (Exception $e) {
+           echo "je suis dans l'erreur";
             echo "******************" . $_GET['action'] . "********************";
             $this->erreur($e->getMessage());
-        }
+        }*/
     }
 
 
