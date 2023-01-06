@@ -23,13 +23,11 @@ class C_Boisson
         $vue->generer($donnes);
     }
 
-
-
-    // A faire
     // Affiche une boisson spécifique
     public function boisson($idBoisson)
     {
         $vue = new View("boisson");
-        $vue->generer(array());
+        $donnes = array('boisson' => $this->boisson->getBoisson($_GET['id']));
+        $vue->generer($donnes);
     }
 }

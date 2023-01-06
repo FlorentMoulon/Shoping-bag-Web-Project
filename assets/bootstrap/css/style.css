@@ -13,3 +13,14 @@ footer{
     background-color: #222;
     color: #9d9d9d;
 }
+
+
+.Produit{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px;
+}
+
+.ImageProduit{
+    width: 200px;
+}
