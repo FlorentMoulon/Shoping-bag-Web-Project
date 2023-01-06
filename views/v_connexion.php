@@ -25,6 +25,7 @@ if (isset($_POST['connexion'])){
     if($_POST['Username']!=''){
         if($_POST['Password']!=''){
             echo 'Connexion valide';
+            $_SESSION['Username'] = $_POST['Username'];
         } 
         else{echo 'Connexion échoué, veuillez remplir le champ mdp';}
     }
