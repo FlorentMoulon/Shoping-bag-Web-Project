@@ -22,7 +22,8 @@
 //Lorsque le formulaire est soumis
 //Structure de base : IL FAUT ENCORE AJOUTER LES VERIFICATION AVEC la BDD
 if (isset($_POST['connexion'])){
-    if($_POST['Username']!=''){
+    
+    /*if($_POST['Username']!=''){
         if($_POST['Password']!=''){
             echo 'Connexion valide';
             $_SESSION['Username'] = $_POST['Username'];
@@ -31,7 +32,7 @@ if (isset($_POST['connexion'])){
     }
     else{
         echo 'Veuillez rentrer un nom d\'utilisateur';
-    }
+    }*/
 } 
 
 ?>
