@@ -8,25 +8,28 @@ require_once(PATH_VIEWS . 'View.php');
 
 class C_Biscuit
 {
+    private $biscuit;
+
     public function __construct()
     {
+        $this->biscuit = new Biscuit();
     }
 
-    //A faire
+
     // Affiche la liste de toute les boissons
     public function biscuits()
     {
         $vue = new View("biscuits");
-        $vue->generer(array());
+        $donnes = array('biscuits' => $this->biscuit->getBiscuits());
+        $vue->generer($donnes);
     }
 
 
-
-    //A faire
     // Affiche une boisson spécifique
     public function biscuit($idBiscuit)
     {
         $vue = new View("biscuit");
-        $vue->generer(array());
+        $donnes = array('biscuit' => $this->biscuit->getBiscuit($_GET['id']));
+        $vue->generer($donnes);
     }
 }
