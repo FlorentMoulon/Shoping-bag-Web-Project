@@ -22,17 +22,8 @@
 //Lorsque le formulaire est soumis
 //Structure de base : IL FAUT ENCORE AJOUTER LES VERIFICATION AVEC la BDD
 if (isset($_POST['connexion'])){
-    
-    /*if($_POST['Username']!=''){
-        if($_POST['Password']!=''){
-            echo 'Connexion valide';
-            $_SESSION['Username'] = $_POST['Username'];
-        } 
-        else{echo 'Connexion échoué, veuillez remplir le champ mdp';}
-    }
-    else{
-        echo 'Veuillez rentrer un nom d\'utilisateur';
-    }*/
+    $connection = new Connexion();
+    $connection->verifieConnexion();
 } 
 
 ?>
