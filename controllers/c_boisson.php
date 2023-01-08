@@ -27,7 +27,7 @@ class C_Boisson
     public function boisson($idBoisson)
     {
         $vue = new View("boisson");
-        $donnes = array('boisson' => $this->boisson->getBoisson($_GET['id']));
+        $donnes = array('boisson' => $this->boisson->getBoisson($idBoisson));
         $vue->generer($donnes);
     }
 }

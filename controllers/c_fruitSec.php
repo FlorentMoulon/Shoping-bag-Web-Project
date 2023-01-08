@@ -8,24 +8,26 @@ require_once(PATH_VIEWS . 'View.php');
 
 class C_FruitSec
 {
+    private $fruitSec;
+
     public function __construct()
     {
+        $this->fruitSec = new FruitSec();
     }
 
-    // Affiche la liste de toute les fruits sec
+    // Affiche la liste de toute les fruits secs
     public function fruitsSecs()
     {
         $vue = new View("fruitsSecs");
-        $vue->generer(array());
+        $donnes = array('fruitsSecs' => $this->fruitSec->getFruitsSecs());
+        $vue->generer($donnes);
     }
 
-
-
-    //A faire
     // Affiche un fruti sec spécifique
     public function fruitSec($idFruitSec)
     {
         $vue = new View("fruitSec");
-        $vue->generer(array());
+        $donnes = array('fruitSec' => $this->fruitSec->getFruitSec($idFruitSec));
+        $vue->generer($donnes);
     }
 }

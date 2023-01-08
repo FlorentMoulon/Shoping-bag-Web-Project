@@ -17,7 +17,7 @@ class BIscuit extends Model
     // Renvoie les informations sur un biscuit précis
     function getBiscuit($idBiscuit)
     {
-        $sql = 'select name, description, image, price, quantity from products'
+        $sql = 'select id, name, description, image, price, quantity from products'
             . ' where cat_id = 2 and id =' . $idBiscuit;
         $biscuit = $this->executerRequete($sql, array($idBiscuit));
 

@@ -12,11 +12,21 @@
         <div>
             <p>" .  $biscuit['description'] . "</p>
             <b>Notre prix :" . $biscuit['price'] . "€</b>
-            <a href=\"index.php?\">[acheter]</a>
         </div>
     </div>";
     ?>
+
+    <div class="Achat">
+        <?php echo "<form method='POST' action=\"index.php?action=pannier&id=" . $biscuit['id'] . "\">"; ?>
+        <label for="Nombre"></label>
+        <input type="number" id='Nombre' name='Nombre' value="1">
+        <input type="submit" name='Acheter' value="Acheter">
+        </form>
+    </div>
+
+
 </article>
+
 
 
 
