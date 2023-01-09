@@ -12,14 +12,15 @@ class C_Panier
 
     public function __construct()
     {
-        $this->panier;
+        $this->panier = new Panier();
     }
 
     // Affiche la liste des objets dans le panier
     public function panier()
     {
+        $idPanier = 63;
         $vue = new View("panier");
-        $donnes = array('produits' => $this->panier->getPanier());
-        $vue->generer(array($donnes));
+        $donnes = array('produits' => $this->panier->getPanier($idPanier), 'total' => $this->panier->getTotal($idPanier));
+        $vue->generer($donnes);
     }
 }

@@ -12,15 +12,27 @@ foreach ($produits as $d) {
         <div><img class=\"ImageProduit\" src=\"" . IMAGE . $d['image'] . "\" alt=\"image : " . $d['name'] . "\"></div>
         <div>
             <h2>" . $d['name'] . "</h2>
-            Notre prix :<b>" . $d['price'] . "€</b>
+
+            <p>Prix unitaire :<b>" . $d['price'] . "€</b></p>
+
             <form action=\"#\">
-                <input type=\"number\" id=\"Quantite\" value=\"" . $d['quantite'] . "\">
-                <label for='Quantite'>
-                <input type=\"submit\" value=\"Actualiser quantité\">
+                <div>
+                    <input type=\"number\" id=\"Quantite\" value=\"" . $d['quantity'] . "\">
+                    <label for='Quantite'>
+                    <input type=\"submit\" name=\"Actualiser\" value=\"Actualiser quantité\">
+                </div>
+
+
+                <p>Prix global :<b>" . $d['price'] * $d['quantity'] . "€</b></p>
+
+
+                <input type=\"submit\" name=\"Supprimmer\" value=\"X\">
             </form>
         </div>
     </div>";
 }
+
+echo "<div> Le montant total de votre panier est de " . $total . " € </div>";
 ?>
 
 
