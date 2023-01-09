@@ -10,10 +10,9 @@ class Connexion extends Model{
         WHERE username = '". $_POST['Username']. "' and motdepasse = '".$_POST['Password'] ."'; ";
         $id_user = $this->executerRequete($sql)->fetch();
         try{
-            echo $id_user['customer_id'];
             if($id_user==''){
                 echo "<p class = \" alert-warning\"> Mot de passe ou login incorrect </p>";
-            } 
+            }
             else{
                 echo "<p class = \" alert-success\"> Connection effectuée </p>";
                 $_SESSION['id_user'] = $id_user;  
@@ -25,8 +24,15 @@ class Connexion extends Model{
     }
 }
 
-//Requete SQL a faire
-/* 
-SELECT id_user
-FROM Logins
-WHERE Username = $username AND Password = $password */
+
+class Enregistrement extends Model{
+    function enregistrement()
+    {
+        $sql = "INSERT INTO LOGINS 
+        VALUES  (7, 5, '". $_POST['Username']. "', '" .$_POST['Password'] ."');";
+        echo $sql;
+        $this->executerRequete($sql);
+    }
+
+}
+
