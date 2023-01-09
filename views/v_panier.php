@@ -7,32 +7,48 @@
 
 <?php
 foreach ($produits as $d) {
+    switch ($d['cat_id']) {
+        case 1:
+            $action = 'boisson';
+            break;
+        case 2:
+            $action = 'biscuit';
+            break;
+        case 3:
+            $action = 'fruitSec';
+            break;
+        default:
+            break;
+    }
+
+
     echo
     "<div class=\"Produit\">
         <div><img class=\"ImageProduit\" src=\"" . IMAGE . $d['image'] . "\" alt=\"image : " . $d['name'] . "\"></div>
         <div>
-            <h2>" . $d['name'] . "</h2>
+        <a href=\"index.php?action=" . $action . "&id=" . $d['id'] . "\"><h2>" . $d['name'] . "</h2></a>
 
             <p>Prix unitaire :<b>" . $d['price'] . "€</b></p>
 
-            <form action=\"#\">
+            <form method=\"Post\" action=\"index.php?action=ajouter&id=" . $d['id'] . "\">
                 <div>
-                    <input type=\"number\" id=\"Quantite\" value=\"" . $d['quantity'] . "\">
+                    <input type=\"number\" name=\"Quantite\" id=\"Quantite\" value=\"" . $d['quantity'] . "\">
                     <label for='Quantite'>
                     <input type=\"submit\" name=\"Actualiser\" value=\"Actualiser quantité\">
                 </div>
-
-
-                <p>Prix global :<b>" . $d['price'] * $d['quantity'] . "€</b></p>
-
-
-                <input type=\"submit\" name=\"Supprimmer\" value=\"X\">
             </form>
+
+            <p>Prix global :<b>" . $d['price'] * $d['quantity'] . "€</b></p>
+
+            <a href=\"index.php?action=supprimer&id=" . $d['id'] . ">X</a>
+                
         </div>
     </div>";
 }
 
-echo "<div> Le montant total de votre panier est de " . $total . " € </div>";
+echo "<div> Le montant total de votre panier est de " . $total . " € </div>
+        <a href=\"index.php?action=caisse\">Aller à la caisse</a>";
+
 ?>
 
 

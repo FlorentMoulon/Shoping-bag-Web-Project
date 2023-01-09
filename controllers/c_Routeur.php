@@ -36,7 +36,9 @@ class Routeur
     {
         if (isset($tableau[$nom])) {
             return $tableau[$nom];
-        } else throw new Exception("Paramètre '$nom' absent");
+        } else {
+            throw new Exception("Paramètre '$nom' absent");
+        }
     }
 
 
@@ -81,6 +83,10 @@ class Routeur
             //Panier
             else if ($_GET['action'] == 'panier') {
                 $this->c_panier->panier();
+            } else if ($_GET['action'] == 'supprimer') {
+                $this->c_panier->supprimer($this->getParametre($_GET, 'id'));
+            } else if ($_GET['action'] == 'ajouter') {
+                $this->c_panier->ajouter($this->getParametre($_GET, 'id'), $this->getParametre($_POST, 'Quantite'));
             }
             //Action invalide
             else {

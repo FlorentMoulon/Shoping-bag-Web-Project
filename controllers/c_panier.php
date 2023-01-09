@@ -23,4 +23,25 @@ class C_Panier
         $donnes = array('produits' => $this->panier->getPanier($idPanier), 'total' => $this->panier->getTotal($idPanier));
         $vue->generer($donnes);
     }
+
+    public function supprimer($idProduit)
+    {
+        $idPanier = 63;
+        $this->panier->supprimerProduit($idPanier, $idProduit);
+
+        $this->panier();
+    }
+
+    public function ajouter($idProduit, $nvQuantite)
+    {
+        $idPanier = 63;
+
+        if ($nvQuantite > 0) {
+            $this->panier->ajouterProduit($idPanier, $idProduit, $nvQuantite);
+        } else {
+            $this->panier->supprimerProduit($idPanier, $idProduit);
+        }
+
+        $this->panier();
+    }
 }
