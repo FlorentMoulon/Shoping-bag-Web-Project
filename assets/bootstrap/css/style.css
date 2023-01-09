@@ -21,6 +21,10 @@ footer{
     margin-bottom: 25px;
 }
 
-.ImageProduit{
-    width: 200px;
+.ligne_form{
+    margin-bottom: 15px;
+}
+
+input{
+    margin-right: 15px;
 }
