@@ -40,7 +40,7 @@ class Routeur
     // Traite une requête entrante 
     public function routerRequete()
     {
-        try {
+        //try {
             if (isset($_GET['action'])) {
                 //Page des boissons
                 if ($_GET['action'] == 'boissons') {
@@ -87,11 +87,11 @@ class Routeur
             } else { // aucune action définie : affichage de l'accueil
                 $this->c_home->home();
             }
-        } catch (Exception $e) {
+        /*} catch (Exception $e) {
             echo "je suis dans l'erreur";
             echo "******************" . $_GET['action'] . "********************";
             $this->erreur($e->getMessage());
-        }
+        }*/
     }
 
 
