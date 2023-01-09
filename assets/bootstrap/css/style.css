@@ -23,4 +23,16 @@ footer{
 
 .ImageProduit{
     width: 200px;
+    margin-right: 20px;
+}
+
+.Commentaire{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px;
+}
+
+.ImageCommentaire{
+    width: 75px;
+    margin-right: 20px;
 }
