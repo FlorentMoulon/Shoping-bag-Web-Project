@@ -8,13 +8,20 @@
     Merci d'entrer un identifiant et un mot de passe pour créér un compte client.
 </p>
 
-<form action="index.php?action=connexion">
+<form action="index.php?action=enregistrement" method = "post">
     <label for="Username">Username</label>
     <input type="text" id="Username" name="Username">
     <label for="Password">Password</label>
     <input type="password" id="Password" name="Password">
-
     <input type="submit" name="Créer" id="Créer" value="Créer">
 </form>
+
+<?php
+if (isset($_POST['Créer'])){
+    $enregistrement = new Enregistrement();
+    $enregistrement->enregistrement();
+}
+
+?>
 
 <?php $contenu = ob_get_clean(); ?>
