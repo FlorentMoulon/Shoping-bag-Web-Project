@@ -16,7 +16,7 @@ class Boisson extends Model
     // Renvoie les informations sur une boisson précise
     function getBoisson($idBoisson)
     {
-        $sql = 'select name, description, image, price, quantity from products'
+        $sql = 'select id, name, description, image, price, quantity from products'
             . ' where cat_id = 1 and id =' . $idBoisson;
         $boisson = $this->executerRequete($sql, array($idBoisson));
 

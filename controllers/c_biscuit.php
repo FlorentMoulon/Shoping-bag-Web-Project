@@ -29,7 +29,7 @@ class C_Biscuit
     public function biscuit($idBiscuit)
     {
         $vue = new View("biscuit");
-        $donnes = array('biscuit' => $this->biscuit->getBiscuit($_GET['id']));
+        $donnes = array('biscuit' => $this->biscuit->getBiscuit($idBiscuit));
         $vue->generer($donnes);
     }
 }
