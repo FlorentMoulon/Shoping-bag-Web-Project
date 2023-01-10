@@ -18,17 +18,17 @@ class C_Caisse
     // A faire
     public function choisirAdresse()
     {
-        $idUser = 2;
+        $idUser = 1;
         $vue = new View("choisirAdresse");
-        $donnes = array('adresses' => $this->caisse->getAdresse($idUser));
+        $donnes = array('adresse' => $this->caisse->getAdresse($idUser));
         $vue->generer($donnes);
     }
 
     // A faire
-    public function choisirPayement()
+    public function choisirPaiement()
     {
         $idUser = 2;
-        $vue = new View("choisirPayement");
+        $vue = new View("choisirPaiement");
         $donnes = array();
         $vue->generer($donnes);
     }

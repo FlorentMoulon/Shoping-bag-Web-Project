@@ -85,8 +85,8 @@ class Routeur
             //Caisse
             else if ($_GET['action'] == 'choisirAdresse') {
                 $this->c_caisse->choisirAdresse();
-            } else if ($_GET['action'] == 'choisirPayement') {
-                $this->c_caisse->choisirPayement();
+            } else if ($_GET['action'] == 'choisirPaiement') {
+                $this->c_caisse->choisirPaiement();
             }
             //Action invalide
             else {
