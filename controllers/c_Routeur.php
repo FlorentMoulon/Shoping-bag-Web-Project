@@ -1,11 +1,9 @@
 <?php
 require_once PATH_CONTROLLERS . 'home.php';
 require_once PATH_CONTROLLERS . 'produit.php';
-//require_once PATH_CONTROLLERS . 'boisson.php';
-//require_once PATH_CONTROLLERS . 'biscuit.php';
-//require_once PATH_CONTROLLERS . 'fruitSec.php';
 require_once PATH_CONTROLLERS . 'connexion.php';
 require_once PATH_CONTROLLERS . 'panier.php';
+require_once PATH_CONTROLLERS . 'caisse.php';
 
 require_once PATH_VIEWS . 'View.php';
 
@@ -14,21 +12,17 @@ class Routeur
 {
     private $c_home;
     private $c_produit;
-    //private $c_boisson;
-    //private $c_biscuit;
-    //private $c_fruitSec;
     private $c_connexion;
     private $c_panier;
+    private $c_caisse;
 
     public function __construct()
     {
         $this->c_home = new C_Home();
         $this->c_produit = new C_Produit();
-        //$this->c_boisson = new C_Boisson();
-        //$this->c_biscuit = new C_Biscuit();
-        //$this->c_fruitSec = new C_FruitSec();
         $this->c_connexion = new C_Connexion();
         $this->c_panier = new C_Panier();
+        $this->c_caisse = new C_Caisse();
     }
 
     // Recherche un paramètre dans un tableau
@@ -87,6 +81,12 @@ class Routeur
                 $this->c_panier->supprimer($this->getParametre($_GET, 'id'));
             } else if ($_GET['action'] == 'ajouter') {
                 $this->c_panier->ajouter($this->getParametre($_GET, 'id'), $this->getParametre($_POST, 'Quantite'));
+            }
+            //Caisse
+            else if ($_GET['action'] == 'choisirAdresse') {
+                $this->c_caisse->choisirAdresse();
+            } else if ($_GET['action'] == 'choisirPayement') {
+                $this->c_caisse->choisirPayement();
             }
             //Action invalide
             else {

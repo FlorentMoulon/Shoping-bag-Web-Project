@@ -11,7 +11,7 @@ class Panier extends Model
         $sql = 'select P.cat_id, P.id, P.name, P.description, P.image, P.price, OI.quantity from orders O
             join orderitems OI on OI.order_id=O.id
             join products P on P.id=OI.product_id
-            where O.id = ' . $idPanier;
+            where O.id = ?';
         $panier = $this->executerRequete($sql, array($idPanier));
         return   $panier;
     }
@@ -19,7 +19,7 @@ class Panier extends Model
     function getTotal($idPanier)
     {
         $sql = 'select O.total from orders O
-            where O.id = ' . $idPanier;
+            where O.id = ?';
         $panier = $this->executerRequete($sql, array($idPanier));
 
         if ($panier->rowCount() == 1)   return $panier->fetch()['total']; // Accès à la première ligne de résultat 

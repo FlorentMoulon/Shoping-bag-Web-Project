@@ -6,8 +6,8 @@ class Produit extends Model
     // Renvoie la liste des boissons
     function getProduits($categorie)
     {
-        $sql = 'select id, name, description, image, price, quantity from products'
-            . ' where cat_id =' . $categorie;
+        $sql = "select id, name, description, image, price, quantity from products
+            where cat_id = ?";
         $produits = $this->executerRequete($sql, array($categorie));
 
         return $produits;
@@ -16,8 +16,8 @@ class Produit extends Model
     // Renvoie les informations sur une boisson précise
     function getProduit($categorie, $idProduit)
     {
-        $sql = 'select id, name, description, image, price, quantity from products'
-            . ' where cat_id = ' . $categorie . ' and id =' . $idProduit;
+        $sql = "select id, name, description, image, price, quantity from products
+            where cat_id =  ?  and id = ?";
         $produit = $this->executerRequete($sql, array($categorie, $idProduit));
 
         if ($produit->rowCount() == 1)   return $produit->fetch(); // Accès à la première ligne de résultat 
@@ -26,8 +26,8 @@ class Produit extends Model
 
     function getCommentaire($idProduit)
     {
-        $sql = 'select name_user, photo_user, stars, title, description from reviews'
-            . ' where id_product =' . $idProduit;
+        $sql = 'select name_user, photo_user, stars, title, description from reviews
+                where id_product = ?';
         $commentaire = $this->executerRequete($sql, array($idProduit));
 
         return $commentaire;

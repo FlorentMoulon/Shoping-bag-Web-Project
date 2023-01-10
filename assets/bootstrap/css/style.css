@@ -37,6 +37,12 @@ footer{
     margin-right: 20px;
 }
 
+.ProduitPanier{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px;
+}
+
 
 .ligne_form{
     margin-bottom: 15px;
