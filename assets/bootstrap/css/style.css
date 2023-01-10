@@ -15,7 +15,8 @@ footer{
 }
 
 
-.Produit{
+.Produit img{
+    width : 200px;
     display: flex;
     flex-direction: row;
     margin-bottom: 25px;
