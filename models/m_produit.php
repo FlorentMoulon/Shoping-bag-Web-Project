@@ -9,15 +9,14 @@ class Produit extends Model
         $sql = "select id, name, description, image, price, quantity from products
             where cat_id = ?";
         $produits = $this->executerRequete($sql, array($categorie));
-
         return $produits;
     }
 
     // Renvoie les informations sur une boisson précise
     function getProduit($categorie, $idProduit)
     {
-        $sql = "select id, name, description, image, price, quantity from products
-            where cat_id =  ?  and id = ?";
+        $sql = 'select id, name, description, image, price, quantity from products'
+             .' where cat_id = ? and id = ?';
         $produit = $this->executerRequete($sql, array($categorie, $idProduit));
 
         if ($produit->rowCount() == 1)   return $produit->fetch(); // Accès à la première ligne de résultat 

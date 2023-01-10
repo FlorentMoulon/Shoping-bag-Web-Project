@@ -16,7 +16,7 @@ class Routeur
     private $c_panier;
     private $c_caisse;
 
-    public function __construct()
+    public function __construct() //Mettre tout a null sauf si on l'appelle ? (QUESTION)
     {
         $this->c_home = new C_Home();
         $this->c_produit = new C_Produit();
