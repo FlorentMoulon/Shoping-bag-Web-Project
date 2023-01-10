@@ -5,7 +5,7 @@
 <h1>Veuiller Choisir une adresse</h1>
 
 
-<form action="index.php?action=choisirPaiement">
+<form method="POST" action="index.php?action=choisirPaiement">
     <span>
         <h2>Adresse de votre compte</h2>
         <?php
