@@ -7,8 +7,9 @@ class Connexion extends Model{
     {
         $sql = "SELECT *
         FROM Logins 
-        WHERE username = '". $_POST['Username']. "' and motdepasse = '".$_POST['Password'] ."'; ";
-        $id_user = $this->executerRequete($sql)->fetch();
+        WHERE username = ? and motdepasse = ?";
+
+        $id_user = $this->executerRequete($sql, array($_POST['Username'], $_POST['Password']))->fetch();
         try{
             if($id_user==''){
                 echo "<p class = \" alert-warning\"> Mot de passe ou login incorrect </p>";
