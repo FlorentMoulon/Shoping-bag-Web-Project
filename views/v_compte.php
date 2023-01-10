@@ -1,8 +1,8 @@
-<?php $titre = "Connexion"; ?>
+<?php $titre = "Compte"; ?>
 
 <?php ob_start(); ?>
 
-<h1>Identification Client</h1>
+<h1>Votre espace compte <?php echo $pseudo; ?> </h1>
 
 <p>
     Merci d'entrer votre identifiant et votre mot de passe pour acceder à votre espace client. Si vous n'avez pas
@@ -19,7 +19,12 @@
     <input type="submit" name="connexion" id="connexion" value="Connexion">
 </form>
 <?php 
-echo $Co;
+//Lorsque le formulaire est soumis
+//Structure de base : IL FAUT ENCORE AJOUTER LES VERIFICATION AVEC la BDD
+if (isset($_POST['connexion'])){
+    $connection = new Connexion();
+    $connection->verifieConnexion();
+} 
 
 ?>
 <?php $contenu = ob_get_clean(); ?>

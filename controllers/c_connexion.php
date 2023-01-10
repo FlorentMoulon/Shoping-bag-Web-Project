@@ -16,13 +16,26 @@ class C_Connexion
 
     public function connexion()
     {
+        if (isset($_POST['connexion'])){
+            $connection = new Connexion();
+            $msg = $connection->verifieConnexion();
+        } 
+        
         $vue = new View("connexion");
-        $vue->generer(array());
+        $vue->generer(array('Co'=>$msg));
+        
     }
 
     public function enregistrement()
     {
         $vue = new View("enregistrement");
         $vue->generer(array());
+    }
+
+    public function compte(){
+        $vue = new View("compte");
+        $compte = new Compte();
+        $username = $compte->getPseudo();
+        $vue->generer(array('pseudo'=>$username));
     }
 }

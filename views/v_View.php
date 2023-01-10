@@ -12,6 +12,7 @@ class View
 
     public function generer($donnees)
     {
+        $array_navbar = 
         // Génération de la partie spécifique de la vue
         $array_vue = $this->genererFichier($this->fichier, $donnees);
         // Génération du gabarit commun utilisant la partie spécifique
