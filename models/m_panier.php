@@ -17,6 +17,7 @@ class Panier extends Model
         return   $panier;
     }
 
+    // Renvoie le prix total de la commande
     function getTotal($idPanier)
     {
         $sql = 'select O.total from orders O
@@ -27,7 +28,7 @@ class Panier extends Model
         else throw new Exception("Aucune commande ne correspond à l'identifiant '$idPanier'");
     }
 
-    function changeTotal($idPanier)
+    function changerTotal($idPanier)
     {
         //on récupère les produits (quantité et prix)
         $sql = 'SELECT OI.quantity, P.price from orders O 
@@ -47,6 +48,37 @@ class Panier extends Model
             SET total = ?
             WHERE id = ?';
         $this->executerRequete($sql, array($total, $idPanier));
+    }
+
+
+    function nouvelleAdresse($first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email)
+    {
+        //on récupère l'id existant le plus élévé
+        $sql = 'SELECT max(id) FROM delivery_addresses';
+        $id_max = $this->executerRequete($sql, array());
+        if ($id_max->rowCount() == 1)   $id_max = $id_max->fetch()['max(id)'];
+        else throw new Exception("Pas de max '$id_max'");
+        //on ajoute 1 pour avoir avoir un id libre
+        $id_max++;
+
+        //on crée la nouvelle adresse dans la BDD
+        $sql = "insert INTO delivery_addresses 
+            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $this->executerRequete($sql, array($id_max, $first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email));
+
+        return $id_max;
+    }
+
+
+    function changerAdresse($idPanier, $first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email)
+    {
+
+        $idAdresse = $this->nouvelleAdresse($first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email);
+
+        $sql = 'UPDATE orders
+            SET delivery_add_id = ?
+            WHERE id = ?';
+        $this->executerRequete($sql, array($idAdresse, $idPanier));
     }
 
 
@@ -93,7 +125,7 @@ class Panier extends Model
                 values(?,?,?,?)';
         $this->executerRequete($sql, array($id_max, $idPanier, $idProduit, $quantite));
 
-        $this->changeTotal($idPanier);
+        $this->changerTotal($idPanier);
     }
 
     function supprimerProduit($idPanier, $idProduit)
@@ -102,7 +134,7 @@ class Panier extends Model
             WHERE product_id = ? and order_id=?';
         $this->executerRequete($sql, array($idProduit, $idPanier));
 
-        $this->changeTotal($idPanier);
+        $this->changerTotal($idPanier);
     }
 
     function changerQuantite($idPanier, $idProduit, $nvQuantite)
@@ -112,6 +144,6 @@ class Panier extends Model
             WHERE product_id = ? and order_id=?';
         $this->executerRequete($sql, array($nvQuantite, $idProduit, $idPanier));
 
-        $this->changeTotal($idPanier);
+        $this->changerTotal($idPanier);
     }
 }

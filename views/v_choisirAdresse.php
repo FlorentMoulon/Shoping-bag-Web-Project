@@ -5,50 +5,70 @@
 <h1>Veuiller Choisir une adresse</h1>
 
 
-<form method="POST" action="index.php?action=choisirPaiement">
-    <span>
-        <h2>Adresse de votre compte</h2>
-        <?php
-        if ($adresse == 0) {
-            echo "Vous n'avez pas d'adresse enregistrer ou vous n'êtes pas connecté. </br>";
-        } else {
-            echo
-            "<div class\"row\">
-            <div>
+<form method="POST" action="index.php?action=AncienneAdresse">
+    <h2>Adresse de votre compte</h2>
+    <?php
+    if ($adresse == 0) {
+        echo "Vous n'avez pas d'adresse enregistrer ou vous n'êtes pas connecté. </br>";
+    } else {
+        echo
+        "<div class=\"row\">
+            <div class=\"marginLeft\">
                 Adresse :<br>
                 Complément d'adresse :<br>
                 Code postal :<br>
                 Ville :<br>
+                </br>
+                Nom :<br>
+                Prénom :<br>
+                Mail: <br>
+                Téléphone :<br>
                 </div>
                 
-                <div>" .
+                <div class=\"marginLeft\">" .
 
-                $adresse['add1'] . "</br>" .
-                $adresse['add2'] . "</br>" .
-                $adresse['add3'] . "</br>" .
-                $adresse['postcode'] . "</br>
-                    <input type=\"submit\" name\"AncienneAdresse\" value=\"Choisir l'adresse de votre compte\">
+            $adresse['add1'] . "</br>" .
+            $adresse['add2'] . "</br>" .
+            $adresse['add3'] . "</br>" .
+            $adresse['postcode'] . "</br>
+                </br>" .
+            $adresse['forname'] . "</br>" .
+            $adresse['surname'] . "</br>" .
+            $adresse['email'] . "</br>" .
+            $adresse['phone'] . "</br>
+
+                    
                 </div>
-                </div>";
-        }
-        ?>
-    </span>
+                </div>
+                <input type=\"submit\" name\"AncienneAdresse\" value=\"Choisir l'adresse de votre compte\">";
+    }
+    ?>
+</form>
 
-    <span>
-        <h2>Ou rentrer une nouvelle adresse</h2>
+<form method="POST" action="index.php?action=NvAdresse">
+    <h2>Ou rentrer une nouvelle adresse</h2>
 
-        <div class="form-group">
-            <input type="text" placeholder="Adresse" id="Rue" name="Rue">
-        </div>
-        <div class="form-group">
-            <input type="text" placeholder="Complément d'adresse" id="C_Rue" name="C_Rue">
-        </div>
-        <div class="form-inline ligne_form">
-            <input type="text" placeholder="Code postal" id="Postal" name="Postal">
-            <input type="text" placeholder="Ville" id="Ville" name="Ville">
-        </div>
-        <input type="submit" name="NvAdresse" value="Choisir l'adresse que vous avez saisie">
-    </span>
+    <h3>Adresse</h3>
+    <div class="form-inline ligne_form">
+        <input type="text" placeholder="Adresse" id="Rue" name="Rue">
+        <input type="text" placeholder="Complément d'adresse" id="C_Rue" name="C_Rue">
+    </div>
+    <div class="form-inline ligne_form">
+        <input type="text" placeholder="Code postal" id="Postal" name="Postal">
+        <input type="text" placeholder="Ville" id="Ville" name="Ville">
+    </div>
+
+    <h3>Contact</h3>
+    <div class="form-inline ligne_form">
+        <input type="text" placeholder="Nom" class="form-control" id="Nom" name="Nom">
+        <input type="text" placeholder="Prénom" class="form-control" id="Prenom" name="Prenom">
+    </div>
+    <div class="form-inline ligne_form">
+        <input type="text" placeholder="Mail" id="Mail" name="Mail">
+        <input type="text" placeholder="Téléphone" id="Telephone" name="Telephone">
+    </div>
+
+    <input type="submit" name="NvAdresse" value="Choisir l'adresse que vous avez saisie">
 
 </form>
 

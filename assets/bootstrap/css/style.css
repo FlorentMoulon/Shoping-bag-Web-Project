@@ -61,3 +61,7 @@ input{
     display: flex;
     flex-direction: row;
 }
+
+.marginLeft{
+    margin-left: 20px;
+}
