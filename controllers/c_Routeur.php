@@ -73,6 +73,8 @@ class Routeur
                 $this->c_connexion->connexion();
             } else if ($_GET['action'] == 'enregistrement') {
                 $this->c_connexion->enregistrement();
+            }else if ($_GET['action'] == 'moncompte'){
+                $this->c_connexion->compte();
             }
             //Panier
             else if ($_GET['action'] == 'panier') {

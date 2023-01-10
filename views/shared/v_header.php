@@ -13,9 +13,8 @@
     </ul>
     <ul class = "nav navbar-nav ms-md-auto pull-right">  
         <?php 
-        print_r($donnees);
-        if ($donnees['connecte']){
-            echo "<li><a href=\"index.php?action=connexion\">Mon compte</a></li>";
+        if (!empty($_SESSION['id_user'])){
+            echo "<li><a href=\"index.php?action=moncompte\">Mon compte</a></li>";
         }
         else echo "<li><a href=\"index.php?action=connexion\">Connexion</a></li>";
         ?>
