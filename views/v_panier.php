@@ -31,7 +31,7 @@ foreach ($produits as $d) {
             
             <p>Prix unitaire :<b>" . $d['price'] . "€</b></p>
 
-            <form method=\"Post\" action=\"index.php?action=ajouter&id=" . $d['id'] . "\">
+            <form method=\"Post\" action=\"index.php?action=changer&id=" . $d['id'] . "\">
                 <div class=\"row\">
                     <input type=\"number\" name=\"Quantite\" id=\"Quantite\" value=\"" . $d['quantity'] . "\">
                     <label for='Quantite'>

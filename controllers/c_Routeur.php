@@ -73,16 +73,18 @@ class Routeur
                 $this->c_connexion->connexion();
             } else if ($_GET['action'] == 'enregistrement') {
                 $this->c_connexion->enregistrement();
-            }else if ($_GET['action'] == 'moncompte'){
+            } else if ($_GET['action'] == 'moncompte') {
                 $this->c_connexion->compte();
             }
             //Panier
             else if ($_GET['action'] == 'panier') {
                 $this->c_panier->panier();
+            } else if ($_GET['action'] == 'ajouter') {
+                $this->c_panier->ajouterProduit($this->getParametre($_GET, 'id'), $this->getParametre($_POST, 'Nombre'));
             } else if ($_GET['action'] == 'supprimer') {
                 $this->c_panier->supprimer($this->getParametre($_GET, 'id'));
-            } else if ($_GET['action'] == 'ajouter') {
-                $this->c_panier->ajouter($this->getParametre($_GET, 'id'), $this->getParametre($_POST, 'Quantite'));
+            } else if ($_GET['action'] == 'changer') {
+                $this->c_panier->changerQuantite($this->getParametre($_GET, 'id'), $this->getParametre($_POST, 'Quantite'));
             }
             //Caisse
             else if ($_GET['action'] == 'choisirAdresse') {

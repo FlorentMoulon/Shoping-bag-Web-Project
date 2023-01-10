@@ -15,29 +15,47 @@ class C_Panier
         $this->panier = new Panier();
     }
 
+
+    public function getIdPanier()
+    {
+        if (empty($_SESSION['idPanier'])) {
+            $_SESSION['idPanier'] = $this->panier->creerPanier();
+        }
+
+        return $_SESSION['idPanier'];
+    }
+
     // Affiche la liste des objets dans le panier
     public function panier()
     {
-        $idPanier = 63;
+        $idPanier = $this->getIdPanier();
         $vue = new View("panier");
         $donnes = array('produits' => $this->panier->getPanier($idPanier), 'total' => $this->panier->getTotal($idPanier));
         $vue->generer($donnes);
     }
 
+
+    public function ajouterProduit($idProduit, $quantite)
+    {
+        $this->panier->ajouterProduit($this->getIdPanier(), $idProduit, $quantite);
+        $this->panier();
+    }
+
+
     public function supprimer($idProduit)
     {
-        $idPanier = 63;
+        $idPanier = $this->getIdPanier();
         $this->panier->supprimerProduit($idPanier, $idProduit);
 
         $this->panier();
     }
 
-    public function ajouter($idProduit, $nvQuantite)
+    public function changerQuantite($idProduit, $nvQuantite)
     {
-        $idPanier = 63;
+        $idPanier = $this->getIdPanier();
 
         if ($nvQuantite > 0) {
-            $this->panier->ajouterProduit($idPanier, $idProduit, $nvQuantite);
+            $this->panier->changerQuantite($idPanier, $idProduit, $nvQuantite);
         } else {
             $this->panier->supprimerProduit($idPanier, $idProduit);
         }

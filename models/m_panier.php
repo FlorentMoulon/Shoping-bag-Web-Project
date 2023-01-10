@@ -5,6 +5,7 @@ require_once PATH_MODELS . 'Model.php';
 
 class Panier extends Model
 {
+
     // Renvoie la liste des objets dans le panier
     function getPanier($idPanier)
     {
@@ -26,28 +27,91 @@ class Panier extends Model
         else throw new Exception("Aucune commande ne correspond à l'identifiant '$idPanier'");
     }
 
-
-    // A faire
-    function supprimerProduit($idPanier, $idProduit)
+    function changeTotal($idPanier)
     {
-        /*$sql = 'select           from orders O
-            join orderitems OI on OI.order_id=O.id
-            where O.id = ' . $idPanier . 'and OI.product_id = ' . $idProduit;
-        $res = $this->executerRequete($sql, array($idPanier, $idProduit));*/
-        echo "id panier" . $idPanier . "<br>";
-        echo "id produit" . $idProduit . "<br>";
+        //on récupère les produits (quantité et prix)
+        $sql = 'SELECT OI.quantity, P.price from orders O 
+            join orderitems OI on OI.order_id=O.id 
+            join products P on P.id=OI.product_id 
+            WHERE O.id = ? ';
+        $panier = $this->executerRequete($sql, array($idPanier));
+
+        //on calcule le total
+        $total = 0;
+        foreach ($panier as $d) {
+            $total += $d['quantity'] * $d['price'];
+        }
+
+        //on l'update dans la BDD
+        $sql = 'UPDATE orders
+            SET total = ?
+            WHERE id = ?';
+        $this->executerRequete($sql, array($total, $idPanier));
+    }
+
+
+    function creerPanier()
+    {
+        //on récupère l'id existant le plus élévé
+        $sql = 'SELECT max(id) FROM orders';
+        $id_max = $this->executerRequete($sql, array());
+        if ($id_max->rowCount() == 1)   $id_max = $id_max->fetch()['max(id)'];
+        else throw new Exception("Pas de max '$id_max'");
+        //on ajoute 1 pour avoir avoir un id libre
+        $id_max++;
+
+        //on regarde si l'utilisateur est connecté
+        if (empty($_SESSION['id_customer'])) {
+            $registered = 0;
+            $id_customer = -1;
+        } else {
+            $registered = 1;
+            $id_customer = $_SESSION['id_customer'];
+        }
+
+        $sql = "insert INTO orders 
+                VALUES(?, ?, ?, -1, 'none', ?, 0, '----------', 0)";
+        $this->executerRequete($sql, array($id_max, $id_customer, $registered, date('Y-m-d')));
+
+        return $id_max;
     }
 
 
     // A faire
-    function ajouterProduit($idPanier, $idProduit, $nvQuantite)
+    function ajouterProduit($idPanier, $idProduit, $quantite)
     {
-        /*$sql = 'select           from orders O
-                join orderitems OI on OI.order_id=O.id
-                where O.id = ' . $idPanier . 'and OI.product_id = ' . $idProduit;
-        $res = $this->executerRequete($sql, array($idPanier, $idProduit));*/
-        echo "id panier" . $idPanier . "<br>";
-        echo "id produit" . $idProduit . "<br>";
-        echo "nv Quantite" . $nvQuantite . "<br>";
+        //on récupère l'id existant le plus élévé
+        $sql = 'SELECT max(id) FROM orderitems';
+        $id_max = $this->executerRequete($sql, array());
+        if ($id_max->rowCount() == 1)   $id_max = $id_max->fetch()['max(id)'];
+        else throw new Exception("Pas de max '$id_max'");
+        //on ajoute 1 pour avoir avoir un id libre
+        $id_max++;
+
+
+        $sql = 'insert into orderitems
+                values(?,?,?,?)';
+        $this->executerRequete($sql, array($id_max, $idPanier, $idProduit, $quantite));
+
+        $this->changeTotal($idPanier);
+    }
+
+    function supprimerProduit($idPanier, $idProduit)
+    {
+        $sql = 'DELETE from orderitems
+            WHERE product_id = ? and order_id=?';
+        $this->executerRequete($sql, array($idProduit, $idPanier));
+
+        $this->changeTotal($idPanier);
+    }
+
+    function changerQuantite($idPanier, $idProduit, $nvQuantite)
+    {
+        $sql = 'UPDATE orderitems
+            SET quantity = ?
+            WHERE product_id = ? and order_id=?';
+        $this->executerRequete($sql, array($nvQuantite, $idProduit, $idPanier));
+
+        $this->changeTotal($idPanier);
     }
 }
