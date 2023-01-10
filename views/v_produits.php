@@ -10,7 +10,7 @@ switch ($categorie) {
         $action = 'biscuit';
         break;
     case 3:
-        $titre = "Nos frutis secs";
+        $titre = "Nos fruits secs";
         $action = 'fruitSec';
         break;
     default:
