@@ -17,7 +17,7 @@
     ?>
 
     <div class="Achat">
-        <?php echo "<form method='POST' action=\"index.php?action=pannier&id=" . $produit['id'] . "\">"; ?>
+        <?php echo "<form method='POST' action=\"index.php?action=panier&id=" . $produit['id'] . "\">"; ?>
         <label for="Nombre"></label>
         <input type="number" id='Nombre' name='Nombre' value="1">
         <input type="submit" name='Acheter' value="Acheter">

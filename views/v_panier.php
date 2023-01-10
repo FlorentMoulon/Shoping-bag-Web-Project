@@ -26,21 +26,23 @@ foreach ($produits as $d) {
     "<div class=\"ProduitPanier\">
         <div><img class=\"ImageProduit\" src=\"" . IMAGE . $d['image'] . "\" alt=\"image : " . $d['name'] . "\"></div>
 
-        <a href=\"index.php?action=" . $action . "&id=" . $d['id'] . "\"><h2>" . $d['name'] . "</h2></a>
+        <div>
+            <a href=\"index.php?action=" . $action . "&id=" . $d['id'] . "\"><h2>" . $d['name'] . "</h2></a>
+            
+            <p>Prix unitaire :<b>" . $d['price'] . "€</b></p>
 
-        <p>Prix unitaire :<b>" . $d['price'] . "€</b></p>
+            <form method=\"Post\" action=\"index.php?action=ajouter&id=" . $d['id'] . "\">
+                <div class=\"row\">
+                    <input type=\"number\" name=\"Quantite\" id=\"Quantite\" value=\"" . $d['quantity'] . "\">
+                    <label for='Quantite'>
+                    <input type=\"submit\" name=\"Actualiser\" value=\"Actualiser quantité\">
+                </div>
+            </form>
 
-        <form method=\"Post\" action=\"index.php?action=ajouter&id=" . $d['id'] . "\">
-            <div class=\"row\">
-                <input type=\"number\" name=\"Quantite\" id=\"Quantite\" value=\"" . $d['quantity'] . "\">
-                <label for='Quantite'>
-                <input type=\"submit\" name=\"Actualiser\" value=\"Actualiser quantité\">
-            </div>
-        </form>
+            <p>Prix global :<b>" . $d['price'] * $d['quantity'] . "€</b></p>
 
-        <p>Prix global :<b>" . $d['price'] * $d['quantity'] . "€</b></p>
-
-        <a href=\"index.php?action=supprimer&id=" . $d['id'] . "\" class=\"btn-default\">X</a>
+            <a href=\"index.php?action=supprimer&id=" . $d['id'] . "\" class=\"btn-default\">X</a>
+        </div>
                 
     </div>";
 }
