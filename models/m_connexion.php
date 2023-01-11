@@ -42,10 +42,9 @@ class Compte extends Model{
         $sql = "SELECT username
         FROM LOGINS 
         WHERE customer_id = ?";
-        echo $sql;
         $pseudo = $this->executerRequete($sql, array($_SESSION['id_customer']));
-        print_r ($_SESSION['id_customer']);
-        if ($pseudo->rowCount() == 1)   return $pseudo->fetch(); // Accès à la première ligne de résultat 
+        
+        if ($pseudo->rowCount() == 1)   return $pseudo->fetch()['username']; // Accès à la première ligne de résultat 
         else throw new Exception("Erreur dans l'accès au compte");
     }
 }

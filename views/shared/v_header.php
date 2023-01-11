@@ -13,7 +13,7 @@
     </ul>
     <ul class = "nav navbar-nav ms-md-auto pull-right">  
         <?php 
-        if (!empty($_SESSION['id_user'])){
+        if (isset($_SESSION['id_customer']) and $_GET['action']!='deconnexion'){
             echo "<li><a href=\"index.php?action=moncompte\">Mon compte</a></li>";
         }
         else echo "<li><a href=\"index.php?action=connexion\">Connexion</a></li>";

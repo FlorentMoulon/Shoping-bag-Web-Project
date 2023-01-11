@@ -19,7 +19,7 @@ class C_Connexion
         if (isset($_POST['connexion'])){
             $connection = new Connexion();
             $msg = $connection->verifieConnexion();
-        } 
+        }else{$msg="";} 
         
         $vue = new View("connexion");
         $vue->generer(array('Co'=>$msg));
@@ -37,5 +37,11 @@ class C_Connexion
         $compte = new Compte();
         $username = $compte->getPseudo();
         $vue->generer(array('pseudo'=>$username));
+    }
+
+    public function deconnexion(){
+        session_destroy();
+        $vue = new View("home");
+        $vue->generer(array());
     }
 }

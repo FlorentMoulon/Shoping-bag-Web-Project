@@ -2,11 +2,10 @@
 
 <?php ob_start(); ?>
 
-<h1>Votre espace compte <?php echo $pseudo; ?> </h1>
+<h1>Bienvenue sur votre espace compte <?php echo $pseudo; ?> </h1>
 
 <p>
-    Merci d'entrer votre identifiant et votre mot de passe pour acceder à votre espace client. Si vous n'avez pas
-    de compte client vous pouvez en créér un gratuitement ici : <a href="index.php?action=enregistrement"><b>Enregistrement</b></a>.
+    <a href="index.php?action=deconnexion"><b>Se déconnecter</b></a>.
 </p>
 
 <form action="index.php?action=connexion" method="post">

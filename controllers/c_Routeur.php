@@ -75,7 +75,10 @@ class Routeur
                 $this->c_connexion->enregistrement();
             }else if ($_GET['action'] == 'moncompte'){
                 $this->c_connexion->compte();
+            }else if ($_GET['action'] == 'deconnexion'){
+                $this->c_connexion->deconnexion();
             }
+
             //Panier
             else if ($_GET['action'] == 'panier') {
                 $this->c_panier->panier();

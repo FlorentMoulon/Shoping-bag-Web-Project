@@ -18,26 +18,26 @@
         <input type="text" placeholder = "Prénom" class="form-control" id="Prenom" name="Prenom">
     </div>
     <div class="form-inline ligne_form" >    
-        <input type="password" placeholder="Mot de passe" id="Password" name="Password">
-        <input type="password" placeholder="Confirmation mot de passe" id="C_Password" name="C_Password">
+        <input type="password" placeholder="Mot de passe" class="form-control" id="Password" name="Password">
+        <input type="password" placeholder="Confirmation mot de passe" class="form-control" id="C_Password" name="C_Password">
     </div>
     
     <h3>Adresse</h3>
     <div class="form-group" >
-        <input type="text" placeholder = "Adresse" id="Rue" name="Rue">
+        <input type="text" placeholder = "Adresse" class="form-control" id="Rue" name="Rue">
     </div>
     <div class="form-group" >
-        <input type="text" placeholder = "Complément d'adresse" id="C_Rue" name="C_Rue">
+        <input type="text" placeholder = "Complément d'adresse" class="form-control" id="C_Rue" name="C_Rue">
     </div>
     <div class="form-inline ligne_form" >    
-        <input type="text" placeholder="Code postal" id="Postal" name="Postal">
-        <input type="text" placeholder="Ville" id="Ville" name="Ville">
+        <input type="text" placeholder="Code postal" class="form-control" id="Postal" name="Postal">
+        <input type="text" placeholder="Ville" class="form-control" id="Ville" name="Ville">
     </div>
         
     <h3>Contact</h3>
     <div class="form-inline ligne_form" >    
-        <input type="text" placeholder="Mail" id="Mail" name="Mail">
-        <input type="text" placeholder="Téléphone" id="Telephone" name="Telephone">
+        <input type="text" placeholder="Mail" class="form-control" id="Mail" name="Mail">
+        <input type="text" placeholder="Téléphone" class="form-control" id="Telephone" name="Telephone">
         
     </div>
 
