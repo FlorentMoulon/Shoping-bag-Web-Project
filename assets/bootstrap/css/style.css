@@ -57,6 +57,10 @@ input{
     margin-right: 15px;
 }
 
+.mail{
+    width : 25%;
+}
+
 .row{
     display: flex;
     flex-direction: row;

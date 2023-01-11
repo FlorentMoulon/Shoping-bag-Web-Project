@@ -14,16 +14,15 @@ class C_Connexion
     }
 
 
+
     public function connexion()
     {
         if (isset($_POST['connexion'])){
             $connection = new Connexion();
             $msg = $connection->verifieConnexion();
         }else{$msg="";} 
-        
         $vue = new View("connexion");
         $vue->generer(array('Co'=>$msg));
-        
     }
 
     public function enregistrement()

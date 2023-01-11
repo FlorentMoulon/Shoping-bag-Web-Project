@@ -29,6 +29,7 @@ class Connexion extends Model{
 class Enregistrement extends Model{
     function enregistrement()
     {
+        // A FINIR
         $sql = "INSERT INTO LOGINS 
         VALUES  (7, 5, ?, ?);";
         

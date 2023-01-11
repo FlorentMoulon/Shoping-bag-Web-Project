@@ -29,4 +29,13 @@ abstract class Model
         }
         return $this->bdd;
     }
+
+    private function getIdMax($nomTable, $nomId)
+    {
+        $sql = "SELECT max(?) 
+        FROM ?";
+        $id = $this->executerRequete($sql, array($nomId, $nomTable));
+        if ($id->rowCount() == 1)   return $id->fetch();  
+        else throw new Exception("Erreur dans les champs requête");
+    }
 }

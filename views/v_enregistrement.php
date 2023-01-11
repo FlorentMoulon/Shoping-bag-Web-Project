@@ -5,7 +5,7 @@
 <h1>Création d'un compte Client</h1>
 
 <p>
-    Merci d'entrer un identifiant et un mot de passe pour créér un compte client.
+    Les champs marqués d'une étoile .
 </p>
 
 <formaction="index.php?action=enregistrement" method = "post">
@@ -36,8 +36,8 @@
         
     <h3>Contact</h3>
     <div class="form-inline ligne_form" >    
-        <input type="text" placeholder="Mail" class="form-control" id="Mail" name="Mail">
-        <input type="text" placeholder="Téléphone" class="form-control" id="Telephone" name="Telephone">
+        <input type="email" placeholder="Mail" class="form-control mail" id="Mail" name="Mail">
+        <input type="tel" placeholder="Téléphone" class="form-control" id="Telephone" name="Telephone">
         
     </div>
 
