@@ -108,22 +108,32 @@ class Panier extends Model
         return $id_max;
     }
 
-
-    // A faire
     function ajouterProduit($idPanier, $idProduit, $quantite)
     {
-        //on récupère l'id existant le plus élévé
-        $sql = 'SELECT max(id) FROM orderitems';
-        $id_max = $this->executerRequete($sql, array());
-        if ($id_max->rowCount() == 1)   $id_max = $id_max->fetch()['max(id)'];
-        else throw new Exception("Pas de max '$id_max'");
-        //on ajoute 1 pour avoir avoir un id libre
-        $id_max++;
+        //on regarde s'il y a déjà un produit avec cette id dans le panier
+        $sql = 'SELECT quantity FROM orderitems 
+                WHERE product_id = ? and order_id = ?';
+        $quantiteDansLePanier = $this->executerRequete($sql, array($idProduit, $idPanier));
+        if ($quantiteDansLePanier->rowCount() == 1) {
+            // si le produit est déjà dans le panier on change juste la quantité
+            $quantiteDansLePanier = $quantiteDansLePanier->fetch()['quantity'];
+            $this->changerQuantite($idPanier, $idProduit, $quantiteDansLePanier + $quantite);
+        } else {
+            // sinon un créer un nouveau orderitem
+
+            //on récupère l'id existant le plus élévé
+            $sql = 'SELECT max(id) FROM orderitems';
+            $id_max = $this->executerRequete($sql, array());
+            if ($id_max->rowCount() == 1)   $id_max = $id_max->fetch()['max(id)'];
+            else throw new Exception("Pas de max '$id_max'");
+            //on ajoute 1 pour avoir avoir un id libre
+            $id_max++;
 
 
-        $sql = 'insert into orderitems
+            $sql = 'insert into orderitems
                 values(?,?,?,?)';
-        $this->executerRequete($sql, array($id_max, $idPanier, $idProduit, $quantite));
+            $this->executerRequete($sql, array($id_max, $idPanier, $idProduit, $quantite));
+        }
 
         $this->changerTotal($idPanier);
     }

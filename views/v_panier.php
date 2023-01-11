@@ -41,14 +41,22 @@ foreach ($produits as $d) {
 
             <p>Prix global :<b>" . $d['price'] * $d['quantity'] . "€</b></p>
 
-            <a href=\"index.php?action=supprimer&id=" . $d['id'] . "\" class=\"btn-default\">X</a>
+            <a href=\"index.php?action=supprimer&id=" . $d['id'] . "\" class=\"btn-default\"><h1>X</h1></a>
         </div>
                 
     </div>";
 }
 
-echo "<div> Le montant total de votre panier est de " . $total . " € </div>
+
+if ($total == 0) {
+    echo "<h2> Vous n'avez rien dans votre panier </h2>
+        <a href=\"index.php?action=boissons\">Aller à la boutique</a>";
+} else {
+    echo "<div> Le montant total de votre panier est de " . $total . " € </div>
         <a href=\"index.php?action=choisirAdresse\">Aller à la caisse</a>";
+}
+
+
 
 ?>
 
