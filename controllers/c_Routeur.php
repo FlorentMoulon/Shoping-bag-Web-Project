@@ -73,7 +73,7 @@ class Routeur
                 $this->c_connexion->connexion();
             } else if ($_GET['action'] == 'enregistrement') {
                 $this->c_connexion->enregistrement();
-            }else if ($_GET['action'] == 'moncompte'){
+            } else if ($_GET['action'] == 'moncompte') {
                 $this->c_connexion->compte();
             }else if ($_GET['action'] == 'deconnexion'){
                 $this->c_connexion->deconnexion();
@@ -82,18 +82,22 @@ class Routeur
             //Panier
             else if ($_GET['action'] == 'panier') {
                 $this->c_panier->panier();
+            } else if ($_GET['action'] == 'ajouter') {
+                $this->c_panier->ajouterProduit($this->getParametre($_GET, 'id'), $this->getParametre($_POST, 'Nombre'));
             } else if ($_GET['action'] == 'supprimer') {
                 $this->c_panier->supprimer($this->getParametre($_GET, 'id'));
-            } else if ($_GET['action'] == 'ajouter') {
-                $this->c_panier->ajouter($this->getParametre($_GET, 'id'), $this->getParametre($_POST, 'Quantite'));
+            } else if ($_GET['action'] == 'changer') {
+                $this->c_panier->changerQuantite($this->getParametre($_GET, 'id'), $this->getParametre($_POST, 'Quantite'));
             }
             //Caisse
             else if ($_GET['action'] == 'choisirAdresse') {
                 $this->c_caisse->choisirAdresse();
-            } else if ($_GET['action'] == 'choisirPaiement') {
-                $this->c_caisse->choisirPaiement();
+            } else if ($_GET['action'] == 'AncienneAdresse') {
+                $this->c_caisse->choisirPaiementAdresseCompte(1);
+            } else if ($_GET['action'] == 'NvAdresse') {
+                $this->c_caisse->choisirPaiementNvAdresse($this->getParametre($_POST, 'Prenom'), $this->getParametre($_POST, 'Nom'), $this->getParametre($_POST, 'Rue'), $this->getParametre($_POST, 'C_Rue'), $this->getParametre($_POST, 'Ville'), $this->getParametre($_POST, 'Postal'), $this->getParametre($_POST, 'Telephone'), $this->getParametre($_POST, 'Mail'));
             } else if ($_GET['action'] == 'paiementCheque') {
-                $this->c_caisse->paiementCheque();
+                $this->c_caisse->paiementCheque(1);
             }
             //Action invalide
             else {

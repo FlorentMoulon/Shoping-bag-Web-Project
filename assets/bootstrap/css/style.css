@@ -1,6 +1,7 @@
 html{
     margin-left : 15%;
     margin-right: 15%;
+    text-decoration: none;
 }
 
 footer{
@@ -14,9 +15,12 @@ footer{
     color: #9d9d9d;
 }
 
+body{
+    margin-bottom: 40px;
+}
 
-.Produit img{
-    width : 200px;
+
+.Produit{
     display: flex;
     flex-direction: row;
     margin-bottom: 25px;
@@ -56,4 +60,8 @@ input{
 .row{
     display: flex;
     flex-direction: row;
+}
+
+.marginLeft{
+    margin-left: 20px;
 }

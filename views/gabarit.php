@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="/assets/bootstrap/css/style.css" />
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/bootstrap/css/style.css" />
     <title><?= $titre ?></title>
 </head>
 
