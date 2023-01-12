@@ -25,10 +25,21 @@ switch ($categorie) {
 echo "<h1>" . $titre . "</h1>";
 
 foreach ($produits as $d) {
+
+    //On regarde la quantité récente pour afficher les rupture de stocks
+    if ($d['quantity'] <= 0) {
+        $comment = 'Rupture de stock !!!';
+    } else if ($d['quantity'] <= 5) {
+        $comment = 'Plus que ' . $d['quantity'] . ' disponible !';
+    } else {
+        $comment = '';
+    }
+
     echo
     "<div class=\"Produit\">
         <div><img class=\"ImageProduit\" src=\"" . IMAGE . $d['image'] . "\" alt=\"image : " . $d['name'] . "\"></div>
         <div>
+            <h3 class=\"Alert\">" . $comment . "</h3>
             <h2>" . $d['name'] . "</h2>
             <p>" .  $d['description'] . "</p>
             <b>Notre prix :" . $d['price'] . "€</b>

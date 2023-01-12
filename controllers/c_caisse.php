@@ -59,11 +59,30 @@ class C_Caisse
         $vue->generer($donnes);
     }
 
-    // A faire
-    public function paiementCheque($idUser)
+    public function paiementCheque()
     {
         $idPanier = $this->getIdPanier();
+
+        //On change le statut de la commande
+        $this->commande->changerStatut($idPanier, 2);
+        //On change le mode de paiement
+        $this->commande->changerModeDePaiement($idPanier, 'cheque');
+
         $vue = new View("paiementCheque");
+        $donnes = array('commande' => $this->commande->getPanier($idPanier), 'total' => $this->commande->getTotal($idPanier));
+        $vue->generer($donnes);
+    }
+
+    public function paiementPaypal()
+    {
+        $idPanier = $this->getIdPanier();
+
+        //On change le statut de la commande
+        $this->commande->changerStatut($idPanier, 2);
+        //On change le mode de paiement
+        $this->commande->changerModeDePaiement($idPanier, 'paypal');
+
+        $vue = new View("paiementPaypal");
         $donnes = array('commande' => $this->commande->getPanier($idPanier), 'total' => $this->commande->getTotal($idPanier));
         $vue->generer($donnes);
     }

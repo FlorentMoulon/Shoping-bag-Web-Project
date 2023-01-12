@@ -50,22 +50,22 @@
 
     <h3>Adresse</h3>
     <div class="form-inline ligne_form">
-        <input type="text" placeholder="Adresse" id="Rue" name="Rue">
-        <input type="text" placeholder="Complément d'adresse" id="C_Rue" name="C_Rue">
+        <input type="text" placeholder="Adresse" id="Rue" name="Rue" required>
+        <input type="text" placeholder="Complément d'adresse" id="C_Rue" name="C_Rue" required>
     </div>
     <div class="form-inline ligne_form">
-        <input type="text" placeholder="Code postal" id="Postal" name="Postal">
-        <input type="text" placeholder="Ville" id="Ville" name="Ville">
+        <input type="text" placeholder="Code postal" id="Postal" name="Postal" required>
+        <input type="text" placeholder="Ville" id="Ville" name="Ville" required>
     </div>
 
     <h3>Contact</h3>
     <div class="form-inline ligne_form">
-        <input type="text" placeholder="Nom" class="form-control" id="Nom" name="Nom">
-        <input type="text" placeholder="Prénom" class="form-control" id="Prenom" name="Prenom">
+        <input type="text" placeholder="Nom" class="form-control" id="Nom" name="Nom" required>
+        <input type="text" placeholder="Prénom" class="form-control" id="Prenom" name="Prenom" required>
     </div>
     <div class="form-inline ligne_form">
-        <input type="text" placeholder="Mail" id="Mail" name="Mail">
-        <input type="text" placeholder="Téléphone" id="Telephone" name="Telephone">
+        <input type="text" placeholder="Mail" id="Mail" name="Mail" required>
+        <input type="text" placeholder="Téléphone" id="Telephone" name="Telephone" required>
     </div>
 
     <input type="submit" name="NvAdresse" value="Choisir l'adresse que vous avez saisie">

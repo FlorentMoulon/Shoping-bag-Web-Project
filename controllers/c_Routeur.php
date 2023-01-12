@@ -75,7 +75,7 @@ class Routeur
                 $this->c_connexion->enregistrement();
             } else if ($_GET['action'] == 'moncompte') {
                 $this->c_connexion->compte();
-            }else if ($_GET['action']== 'deconnexion'){
+            } else if ($_GET['action'] == 'deconnexion') {
                 $this->c_connexion->deconnexion();
             }
 
@@ -97,7 +97,9 @@ class Routeur
             } else if ($_GET['action'] == 'NvAdresse') {
                 $this->c_caisse->choisirPaiementNvAdresse($this->getParametre($_POST, 'Prenom'), $this->getParametre($_POST, 'Nom'), $this->getParametre($_POST, 'Rue'), $this->getParametre($_POST, 'C_Rue'), $this->getParametre($_POST, 'Ville'), $this->getParametre($_POST, 'Postal'), $this->getParametre($_POST, 'Telephone'), $this->getParametre($_POST, 'Mail'));
             } else if ($_GET['action'] == 'paiementCheque') {
-                $this->c_caisse->paiementCheque(1);
+                $this->c_caisse->paiementCheque();
+            } else if ($_GET['action'] == 'paiementPaypal') {
+                $this->c_caisse->paiementPaypal();
             }
             //Action invalide
             else {

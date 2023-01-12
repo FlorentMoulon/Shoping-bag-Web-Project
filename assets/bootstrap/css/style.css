@@ -69,3 +69,7 @@ input{
 .marginLeft{
     margin-left: 20px;
 }
+
+.Alert{
+    color: crimson;
+}
