@@ -26,7 +26,7 @@
                 </form>
             </div>";
     } else {
-        echo "<h2> Désolé mais ce produit en rupture de stocks, revener plus tard.</h2>";
+        echo "<h2> Désolé mais ce produit en rupture de stocks, revenez plus tard.</h2>";
     }
 
 

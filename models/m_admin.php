@@ -41,16 +41,39 @@ class Admin extends Model
     {
         //ON met à jour le statut de la commande
         $sql = 'UPDATE orders O
-            SET O.status = 10
-            WHERE id=?';
+                SET O.status = 10
+                WHERE id=?';
         $this->executerRequete($sql, array($idCommande));
     }
+
+    function changerQuantiteStock($idProduit, $nvQuantite)
+    {
+        $sql = 'UPDATE products
+                SET quantity = ?
+                WHERE id = ?';
+        $this->executerRequete($sql, array($nvQuantite, $idProduit));
+    }
+
 
     function refusser($idCommande)
     {
         //On supprime la comande
+        $sql = 'UPDATE products
+                SET quantity = ?
+                WHERE id = ?';
+        $this->executerRequete($sql, array($idCommande));
 
-        //On supprime les orderitems lié
+        //On rajoute les quantité enlever du stock lors de la commande
+        foreach ($this->getPanier($idCommande) as $p) {
+            $sql = 'SELECT quantity from products
+                    where id = ?';
+            $stock = $this->executerRequete($sql, array($p['id']));
 
+            $this->changerQuantiteStock($p['id'], $stock + $p['quantity']);
+        }
+
+        //On supprime les orderitems liés
+        $sql = 'DELETE FROM orderitems WHERE order_id = ?';
+        $this->executerRequete($sql, array($idCommande));
     }
 }
