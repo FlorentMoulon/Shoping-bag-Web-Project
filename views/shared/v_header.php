@@ -9,12 +9,18 @@
       <li><a href="index.php?action=biscuits">Biscuits</a></li>
       <li><a href="index.php?action=fruitsSecs">Fruits Secs</a></li>
     </ul>
-    <ul class="nav navbar-nav ms-md-auto pull-right">
-      <?php
-      if (isset($_SESSION['id_customer']) and (!isset($_GET['action']) || $_GET['action'] != 'deconnexion')) {
-        echo "<li><a href=\"index.php?action=moncompte\">Mon compte</a></li>";
-      } else echo "<li><a href=\"index.php?action=connexion\">Connexion</a></li>";
-      ?>
+    <ul class = "nav navbar-nav ms-md-auto pull-right">  
+        <?php 
+        if (isset($_SESSION['id'])){
+          if(isset($_GET['action']) and $_GET['action']=='deconnexion'){
+            echo "<li><a href=\"index.php?action=connexion\">Connexion</a></li>";
+          }
+          else{
+            echo "<li><a href=\"index.php?action=moncompte\">Mon compte</a></li>";
+          }
+        }
+        else echo "<li><a href=\"index.php?action=connexion\">Connexion</a></li>";
+        ?>
 
 
 
