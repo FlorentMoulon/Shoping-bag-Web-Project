@@ -79,6 +79,8 @@ class Panier extends Model
             SET delivery_add_id = ?
             WHERE id = ?';
         $this->executerRequete($sql, array($idAdresse, $idPanier));
+
+        $this->changerStatut($idPanier, 1);
     }
 
 
@@ -155,5 +157,21 @@ class Panier extends Model
         $this->executerRequete($sql, array($nvQuantite, $idProduit, $idPanier));
 
         $this->changerTotal($idPanier);
+    }
+
+    function changerStatut($idPanier, $statut)
+    {
+        $sql = 'UPDATE orders O
+            SET O.status = ?
+            WHERE id=?';
+        $this->executerRequete($sql, array($statut, $idPanier));
+    }
+
+    function changerModeDePaiement($idPanier, $mode)
+    {
+        $sql = 'UPDATE orders O
+            SET O.payment_type = ?
+            WHERE id=?';
+        $this->executerRequete($sql, array($mode, $idPanier));
     }
 }

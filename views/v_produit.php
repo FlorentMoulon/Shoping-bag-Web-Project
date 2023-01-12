@@ -12,17 +12,25 @@
         <div>
             <p>" .  $produit['description'] . "</p>
             <b>Notre prix :" . $produit['price'] . "€</b>
+            <b>Quantité restante :" . $produit['quantity'] . "</b>
         </div>
     </div>";
-    ?>
 
-    <div class="Achat">
-        <?php echo "<form method='POST' action=\"index.php?action=ajouter&id=" . $produit['id'] . "\">"; ?>
-        <label for="Nombre"></label>
-        <input type="number" min="1" id='Nombre' name='Nombre' value="1">
-        <input type="submit" name='Acheter' value="Acheter">
-        </form>
-    </div>
+
+    if ($produit['quantity'] > 0) {
+        echo "<div class=\"Achat\">
+                <form method='POST' action=\"index.php?action=ajouter&id=" . $produit['id'] . "\">
+                <label for=\"Nombre\"></label>
+                <input type=\"number\" min=\"1\" max=\"" . $produit['quantity'] . "\" id='Nombre' name='Nombre' value=\"1\">
+                <input type=\"submit\" name='Acheter' value=\"Acheter\">
+                </form>
+            </div>";
+    } else {
+        echo "<h2> Désolé mais ce produit en rupture de stocks, revener plus tard.</h2>";
+    }
+
+
+    ?>
 
 
     <?php
