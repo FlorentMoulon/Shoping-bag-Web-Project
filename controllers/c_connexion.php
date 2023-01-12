@@ -123,7 +123,23 @@ class C_Connexion
         $vue->generer(array());
     }
 
-    function confirmerCommande()
+    function verifierCommande($idCommande)
+    {
+        $panier = $this->admin->getPanier($idCommande);
+        $adresse = $this->admin->getAdresse($idCommande);
+
+        $vue = new View("verifierCommande");
+        $vue->generer(array('panier' => $panier, 'adresse' => $adresse, 'id' => $idCommande));
+    }
+
+    function confirmerCommande($idCommande)
+    {
+        $this->admin->cloturer($idCommande);
+
+        $this->listeCommandes();
+    }
+
+    function listeCommandes()
     {
         $commandes = $this->admin->getCommandes();
 
@@ -133,7 +149,23 @@ class C_Connexion
 
     function gererStock()
     {
+        $produits = $this->admin->getProduits();
+
         $vue = new View("gererStock");
-        $vue->generer(array());
+        $vue->generer(array('produits' => $produits));
+    }
+
+    function changerQuantiteStock($idProsuit, $quantite)
+    {
+        $this->admin->changerQuantiteStock($idProsuit, $quantite);
+
+        $this->gererStock();
+    }
+
+    function changerPrixStock($idProsuit, $prix)
+    {
+        $this->admin->changerPrixStock($idProsuit, $prix);
+
+        $this->gererStock();
     }
 }

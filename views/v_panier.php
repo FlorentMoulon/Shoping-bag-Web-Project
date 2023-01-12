@@ -33,8 +33,8 @@ foreach ($produits as $d) {
 
             <form method=\"Post\" action=\"index.php?action=changer&id=" . $d['id'] . "\">
                 <div class=\"row\">
+                    <label for='Quantite'> Quantité : </label>
                     <input type=\"number\" name=\"Quantite\" id=\"Quantite\" value=\"" . $d['quantity'] . "\">
-                    <label for='Quantite'>
                     <input type=\"submit\" name=\"Actualiser\" value=\"Actualiser quantité\">
                 </div>
             </form>

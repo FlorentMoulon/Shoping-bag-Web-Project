@@ -65,6 +65,15 @@ class Admin extends Model
         $this->executerRequete($sql, array($nvQuantite, $idProduit));
     }
 
+    function changerPrixStock($idProduit, $nvQuantite)
+    {
+        $sql = 'UPDATE products
+                SET price = ?
+                WHERE id = ?';
+        $this->executerRequete($sql, array($nvQuantite, $idProduit));
+    }
+
+
 
     function refusser($idCommande)
     {
@@ -86,5 +95,11 @@ class Admin extends Model
         //On supprime les orderitems liés
         $sql = 'DELETE FROM orderitems WHERE order_id = ?';
         $this->executerRequete($sql, array($idCommande));
+    }
+
+    function getProduits()
+    {
+        $sql = 'SELECT id, cat_id, name, image, price, quantity  FROM products';
+        return  $this->executerRequete($sql, array());
     }
 }

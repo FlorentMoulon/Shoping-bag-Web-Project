@@ -17,7 +17,7 @@ foreach ($commandes as $d) {
         </div>
 
         <div>
-        <a href=\"index.php?action=gererStock&id=" . $d['id'] . "\"> Vérifier la commande </a>
+        <a href=\"index.php?action=verifierCommande&id=" . $d['id'] . "\"> Vérifier la commande </a>
         </div>
     </div>";
 }

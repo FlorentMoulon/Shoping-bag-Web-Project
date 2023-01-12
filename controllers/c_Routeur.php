@@ -68,6 +68,7 @@ class Routeur
                     $this->c_produit->produit(3, $idFruitSec);
                 } else throw new Exception("Identifiant de boisson non valide");
             }
+
             //Page de connexion
             else if ($_GET['action'] == 'connexion') {
                 $this->c_connexion->connexion();
@@ -77,12 +78,21 @@ class Routeur
                 $this->c_connexion->compte();
             } else if ($_GET['action'] == 'deconnexion') {
                 $this->c_connexion->deconnexion();
+            }
+
+            //Admin
+            else if ($_GET['action'] == 'verifierCommande') {
+                $this->c_connexion->verifierCommande($this->getParametre($_GET, 'id'));
             } else if ($_GET['action'] == 'confirmerCommande') {
                 $this->c_connexion->confirmerCommande($this->getParametre($_GET, 'id'));
             } else if ($_GET['action'] == 'listeCommandes') {
-                $this->c_connexion->confirmerCommande();
+                $this->c_connexion->listeCommandes();
             } else if ($_GET['action'] == 'gererStock') {
                 $this->c_connexion->gererStock();
+            } else if ($_GET['action'] == 'changerQuantiteStock') {
+                $this->c_connexion->changerQuantiteStock($this->getParametre($_GET, 'id'), $this->getParametre($_POST, 'Quantite'));
+            } else if ($_GET['action'] == 'changerPrixStock') {
+                $this->c_connexion->changerPrixStock($this->getParametre($_GET, 'id'), $this->getParametre($_POST, 'Prix'));
             }
 
             //Panier
