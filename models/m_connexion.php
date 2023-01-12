@@ -7,7 +7,7 @@ class Connexion extends Model{
     {
         $sql = "SELECT customer_id
         FROM Logins 
-        WHERE username = ? and motdepasse = ?";
+        WHERE username = ? and password = ?";
 
         $id_user = $this->executerRequete($sql, array($_POST['Username'], $_POST['Password']))->fetch();
         try{
