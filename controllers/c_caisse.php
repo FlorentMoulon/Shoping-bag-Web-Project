@@ -42,7 +42,7 @@ class C_Caisse
         $adresse = $this->caisse->getAdresse($idUser);
 
         $idPanier = $this->getIdPanier();
-        $this->commande->changerAdresse($idPanier, $adresse['add1'], $adresse['add2'], $adresse['add3'], $adresse['postcode'], $adresse['forname'], $adresse['surname'], $adresse['email'], $adresse['phone']);
+        $this->commande->changerAdresse($idPanier, $adresse['forname'], $adresse['surname'], $adresse['add1'], $adresse['add2'], $adresse['add3'], $adresse['postcode'], $adresse['phone'], $adresse['email']);
 
         $vue = new View("choisirPaiement");
         $donnes = array();

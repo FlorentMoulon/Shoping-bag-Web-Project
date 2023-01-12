@@ -27,13 +27,30 @@ class Connexion extends Model{
 
 
 class Enregistrement extends Model{
-    function enregistrement()
+    function enregistrer($array_customer, $array_delivery, $array_logins)
     {
-        // A FINIR
-        $sql = "INSERT INTO LOGINS 
-        VALUES  (7, 5, ?, ?);";
+        $id_customer =  $this->executerRequete("Select max(id) from customers")->fetch()['max(id)']+1;
+        //$this->getIdMax("customers");
         
-        $this->executerRequete($sql, array( $_POST['Username'], $_POST['Password']));
+        $insert_customer = "INSERT INTO customers 
+        VALUES (?,?,?,?,?,?,?,?,?,?)";
+
+        $tab_customer =  array_merge(array($id_customer), $array_customer, array(1));
+        print_r($tab_customer);
+        $this->executerRequete($insert_customer, $tab_customer);
+
+
+        $id_log =  $this->executerRequete("Select max(id) from logins")->fetch()['max(id)']+1;
+
+        $insert_logins = "INSERT INTO LOGINS 
+        VALUES  (?, ?, ?, ?);";
+
+        $tab_logins = array_merge(array($id_log, $id_customer), $array_logins);
+
+        $this->executerRequete($insert_logins, $tab_logins);
+        
+        $_SESSION['id_customer'] = $id_customer;
+        return "<p class = \" success-warning\"> Compte correctement créé</p>";
     }
 
 }
