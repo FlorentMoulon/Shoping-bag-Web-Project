@@ -93,12 +93,12 @@ class Panier extends Model
         $id_max++;
 
         //on regarde si l'utilisateur est connecté
-        if (empty($_SESSION['id_customer'])) {
+        if (empty($_SESSION['id'])) {
             $registered = 0;
             $id_customer = -1;
         } else {
             $registered = 1;
-            $id_customer = $_SESSION['id_customer'];
+            $id_customer = $_SESSION['id'];
         }
 
         $sql = "insert INTO orders 

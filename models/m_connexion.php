@@ -1,6 +1,8 @@
 <?php
 require_once PATH_MODELS . 'Model.php';
 
+
+//FAIRE UNE GROSSE FUSION ??
 class Connexion extends Model{
     
     function verifieConnexion()
@@ -9,14 +11,24 @@ class Connexion extends Model{
         FROM Logins 
         WHERE username = ? and password = ?";
 
+        $sql_admin = "SELECT id 
+        FROM admin
+        WHERE username = ? and password = ?";
+
         $id_user = $this->executerRequete($sql, array($_POST['Username'], $_POST['Password']))->fetch();
         try{
-            if($id_user==''){
-                return "<p class = \" alert-warning\"> Mot de passe ou login incorrect </p>";
+            if($id_user!=''){
+                $_SESSION['id'] = $id_user['customer_id'];
+                return "<p class = \" alert-success\"> Connection effectuée </p>";
             }
             else{
-                $_SESSION['id_customer'] = $id_user['customer_id'];
-                return "<p class = \" alert-success\"> Connection effectuée </p>";
+                $id_user = $this->executerRequete($sql_admin, array($_POST['Username'], $_POST['Password']))->fetch();
+                if($id_user!=''){
+                    $_SESSION['id'] = $id_user['id'];
+                    $_SESSION['admin'] = 1;
+                    return "<p class = \" alert-success\"> Connection admin effectuée </p>";
+                }
+                return "<p class = \" alert-warning\"> Mot de passe ou login incorrect </p>";
             }
         }
         catch (Exception $e){
@@ -31,7 +43,7 @@ class Enregistrement extends Model{
     {
         $id_customer =  $this->executerRequete("Select max(id) from customers")->fetch()['max(id)']+1;
         //$this->getIdMax("customers");
-        
+
         $insert_customer = "INSERT INTO customers 
         VALUES (?,?,?,?,?,?,?,?,?,?)";
 
@@ -53,14 +65,30 @@ class Enregistrement extends Model{
         return "<p class = \" success-warning\"> Compte correctement créé</p>";
     }
 
+    function verifieMail($mail){
+        $sql = "SELECT email
+        FROM customers 
+        WHERE email=?";
+        $mel = $this->executerRequete($sql, array($mail));
+        return ($mel->rowCount()==0);
+    }
+
 }
 
 class Compte extends Model{
     function getPseudo(){
-        $sql = "SELECT username
-        FROM LOGINS 
-        WHERE customer_id = ?";
-        $pseudo = $this->executerRequete($sql, array($_SESSION['id_customer']));
+        if (isset($_SESSION['admin'])){
+            $sql = "SELECT username
+            FROM admin
+            WHERE id = ?";
+        }
+        else{
+            $sql = "SELECT username
+            FROM logins
+            WHERE customer_id = ?";
+        }
+
+        $pseudo = $this->executerRequete($sql, array($_SESSION['id']));
         
         if ($pseudo->rowCount() == 1)   return $pseudo->fetch()['username']; // Accès à la première ligne de résultat 
         else throw new Exception("Erreur dans l'accès au compte");

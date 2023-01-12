@@ -1,5 +1,4 @@
 <?php
-
 //Appel du modèle
 require_once(PATH_MODELS . 'connexion.php');
 
@@ -14,7 +13,6 @@ class C_Connexion
     }
 
 
-
     public function connexion()
     {
         if (isset($_POST['connexion'])){
@@ -25,8 +23,7 @@ class C_Connexion
         $vue->generer(array('Co'=>$msg));
     }
 
-    public function enregistrement()
-    {
+    public function enregistrement(){
         if (isset($_POST['Creer'])){
 
             $nom =  $_POST['Nom'];
@@ -41,8 +38,11 @@ class C_Connexion
             $pwd = $_POST['Password'];
 
             //booléen qui indique si toutes les conditions que l'ont pose à la connexion sont remplies 
-            $enregistrement_valide = $this->verifie_mdp();
+            $mdp_valide = $this->verifie_mdp();
+            $mail_valide = $this->mail_dispo($mail);
 
+            $enregistrement_valide = $mdp_valide and $mail_valide;
+            
             if ($enregistrement_valide){
                 $customer = array($nom, $prenom, $rue, $c_rue, $ville, $code_p, $tel, $mail);
                 $delivery = array($nom, $prenom, $rue, $c_rue, $ville, $code_p, $tel, $mail); //c les mêmes
@@ -50,9 +50,38 @@ class C_Connexion
                 $enregistrement = new Enregistrement();
                 $msg = $enregistrement->enregistrer($customer, $delivery, $logins);
             } 
-        }else{$msg="";}
-        $vue = new View("enregistrement");
-        $vue->generer(array('msg'=>$msg));
+            else if (!$mdp_valide){
+                $msg = $this->genere_erreur("vos mots de passe ne correspondent pas");
+                
+            } 
+            else if (!$mail_valide){
+                $msg = $this->genere_erreur("il y a déjà un compte associé à votre mail");
+            }
+            
+        }else{
+            $msg=$prenom=$nom=$rue=$c_rue=$ville=$code_p=$tel=$mail=$pseudo=""; //déclaration des variables vides
+            $enregistrement_valide = false;
+        }
+        $donnees = array('msg' => $msg,
+                        'nom' => $nom,
+                        'prenom' => $prenom,
+                        'rue' => $rue,
+                        'c_rue' => $c_rue,
+                        'ville' => $ville,
+                        'code_p' => $code_p,
+                        'tel' => $tel, 
+                        'mail' => $mail, 
+                        'pseudo' => $pseudo);
+
+        if ($enregistrement_valide){
+            $vue = new View("home");
+            $vue->generer(array());
+        }else{
+            $vue = new View("enregistrement");
+            $vue->generer($donnees);
+        }
+        
+        
     }
 
     //Vérifie la validité d'un champ obligatoire en renvoyant celui-ci ainsi que 
@@ -61,9 +90,21 @@ class C_Connexion
         return ($_POST['Password']==$_POST['C_Password']);
     }
 
+    private function mail_dispo($mail){
+        $enr = new Enregistrement;
+        return $enr->verifieMail($mail);
+    }
+
+    private function genere_erreur($msg_erreur){
+        return ("<h4 class = \" alert-warning\"> Formulaire invalide : $msg_erreur </h4>");
+    }
 
     public function compte(){
-        $vue = new View("compte");
+        if(isset($_SESSION['admin'])){
+            $vue = new View("admin");
+        }else{
+            $vue = new View("compte");
+        }
         $compte = new Compte();
         $username = $compte->getPseudo();
         $vue->generer(array('pseudo'=>$username));
