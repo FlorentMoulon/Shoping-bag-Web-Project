@@ -9,6 +9,17 @@ class Admin extends Model
     // Renvoie la liste des commandes en cours
     function getCommandes()
     {
+        $sql = 'select o.id, D.firstname, D.lastname, D.add1, D.add2, D.city, D.postcode, O.date, O.payment_type, O.total from orders O
+                join delivery_addresses D on D.id = O.delivery_add_id
+                where status = 2';
+        $commandes = $this->executerRequete($sql, array());
+        return   $commandes;
+    }
+
+
+
+    function getIdCommandes()
+    {
         $sql = 'select id from orders
             where status = 2';
         $commandes = $this->executerRequete($sql, array());

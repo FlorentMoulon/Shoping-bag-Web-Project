@@ -77,6 +77,12 @@ class Routeur
                 $this->c_connexion->compte();
             } else if ($_GET['action'] == 'deconnexion') {
                 $this->c_connexion->deconnexion();
+            } else if ($_GET['action'] == 'confirmerCommande') {
+                $this->c_connexion->confirmerCommande($this->getParametre($_GET, 'id'));
+            } else if ($_GET['action'] == 'listeCommandes') {
+                $this->c_connexion->confirmerCommande();
+            } else if ($_GET['action'] == 'gererStock') {
+                $this->c_connexion->gererStock();
             }
 
             //Panier
