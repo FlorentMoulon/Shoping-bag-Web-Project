@@ -33,8 +33,9 @@ foreach ($panier as $d) {
 }
 ?>
 
-<a href="index.php?action=confirmerCommande&id= <?php echo $id; ?>">Confimer la commande</a>
-<a href="index.php?action=refuserCommande&id= <?php echo $id; ?>">Refuser la commande</a>
-
+<div class="BoutonConfirmer">
+    <a href="index.php?action=confirmerCommande&id= <?php echo $id; ?>"><button type="button" class="btn btn-primary">Confimer la commande</button></a>
+    <a href="index.php?action=refuserCommande&id= <?php echo $id; ?>"><button type="button" class="btn btn-primary">Refuser la commande</button></a>
+</div>
 
 <?php $contenu = ob_get_clean(); ?>

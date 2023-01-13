@@ -11,13 +11,13 @@ foreach ($commandes as $d) {
         <div>
             Date :     " . $d['date'] . " <br>
             Paiement : " . $d['payment_type'] . " <br>
-            Total :    " . $d['total'] . " <br>
+            Total :    " . $d['total'] . " € <br>
             Adresse : " . $d['add1'] . " " . $d['add2'] . " " . $d['city'] . " " . $d['postcode'] . "
             Client :  " . $d['firstname'] . " " . $d['lastname'] . "
         </div>
 
         <div>
-        <a href=\"index.php?action=verifierCommande&id=" . $d['id'] . "\"> Vérifier la commande </a>
+        <a href=\"index.php?action=verifierCommande&id=" . $d['id'] . "\"><button type=\"button\" class=\"btn btn-primary\"> Vérifier la commande </button></a>
         </div>
     </div>";
 }

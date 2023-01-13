@@ -4,20 +4,16 @@
 
 <h1>Bienvenue sur votre espace compte admin <?php echo $pseudo; ?> </h1>
 
-<p>
-    <a href="index.php?action=deconnexion"><b>Se déconnecter</b></a>.
-</p>
 
-<p>
-    <a href="index.php?action=listeCommandes"><b>Confirmer les commandes</b></a>.
-</p>
+<div class="col-md-4 col-md-12">
+    <a href="index.php?action=deconnexion"><button type="button" class="margeTop btn btn-primary btn-lg">Se déconnecter</button></a>
 
-<p>
-    <a href="index.php?action=gererStock"><b>Gérer les stocks</b></a>.
-</p>
+    <a href="index.php?action=listeCommandes"><button type="button" class="margeTop btn btn-primary btn-lg">Confirmer les commandes</button></a>
 
+    <a href="index.php?action=gererStock"><button type="button" class="margeTop btn btn-primary btn-lg">Gérer les stocks</button></a>
+</div>
 
-<div>
+<div class="margeTop">
     <h3>Voulez-vous supprimmer les panier non validé de plus d'un jour ?</h3>
 
     <p>
@@ -26,7 +22,7 @@
     </p>
 
     <p>
-        <a href="index.php?action=nettoyerBDD"><b>Supprimer les commandes inachevés</b></a>.
+        <a href="index.php?action=nettoyerBDD"><button type="button" class="btn btn-primary btn-lg">Supprimer les commandes inachevés</button></a>.
     </p>
 </div>
 

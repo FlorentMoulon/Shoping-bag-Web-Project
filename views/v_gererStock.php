@@ -31,18 +31,18 @@ foreach ($produits as $d) {
             <a href=\"index.php?action=" . $action . "&id=" . $d['id'] . "\"><h2>" . $d['name'] . "</h2></a>
             
             <form method=\"Post\" action=\"index.php?action=changerQuantiteStock&id=" . $d['id'] . "\">
-                <div class=\"row\">
+                <div class=\"input-group mb-3\">
                     <label for='Quantite'> Quantité : </label>
-                    <input type=\"number\" name=\"Quantite\" min=\"0\" id=\"Quantite\" value=\"" . $d['quantity'] . "\">
-                    <input type=\"submit\" name=\"Actualiser\" value=\"Actualiser la quantité\">
+                    <input class=\"form-control\" type=\"number\" name=\"Quantite\" min=\"0\" id=\"Quantite\" value=\"" . $d['quantity'] . "\">
+                    <input class=\"btn btn-primary\" type=\"submit\" name=\"Actualiser\" value=\"Actualiser la quantité\">
                 </div>
             </form>
 
             <form method=\"Post\" action=\"index.php?action=changerPrixStock&id=" . $d['id'] . "\">
-                <div class=\"row\">
+                <div class=\"input-group mb-3\">
                     <label for='Prix'> Prix : </label>
-                    <input type=\"number\" name=\"Prix\" step=0.01 min=0 id=\"Prix\" value=\"" . $d['price'] . "\">
-                    <input type=\"submit\" name=\"Actualiser\" value=\"Actualiser le prix\">
+                    <input class=\"form-control\" type=\"number\" name=\"Prix\" step=0.01 min=0 id=\"Prix\" value=\"" . $d['price'] . "\">
+                    <input class=\"btn btn-primary\" type=\"submit\" name=\"Actualiser\" value=\"Actualiser le prix\">
                 </div>
             </form>
         </div>

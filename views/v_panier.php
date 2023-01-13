@@ -32,10 +32,10 @@ foreach ($produits as $d) {
             <p>Prix unitaire :<b>" . $d['price'] . "€</b></p>
 
             <form method=\"Post\" action=\"index.php?action=changer&id=" . $d['id'] . "\">
-                <div class=\"row\">
+                <div class=\"input-group mb-3\">
                     <label for='Quantite'> Quantité : </label>
-                    <input type=\"number\" name=\"Quantite\" id=\"Quantite\" value=\"" . $d['quantity'] . "\">
-                    <input type=\"submit\" name=\"Actualiser\" value=\"Actualiser quantité\">
+                    <input class=\"form-control\" type=\"number\" name=\"Quantite\" max=\"" . $d['quantity'] . "\" id=\"Quantite\" value=\"" . $d['quantity'] . "\">
+                    <input class=\"btn btn-primary\" type=\"submit\" name=\"Actualiser\" value=\"Actualiser quantité\">
                 </div>
             </form>
 
