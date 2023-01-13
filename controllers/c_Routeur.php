@@ -85,6 +85,8 @@ class Routeur
                 $this->c_connexion->verifierCommande($this->getParametre($_GET, 'id'));
             } else if ($_GET['action'] == 'confirmerCommande') {
                 $this->c_connexion->confirmerCommande($this->getParametre($_GET, 'id'));
+            } else if ($_GET['action'] == 'refuserCommande') {
+                $this->c_connexion->refuserCommande($this->getParametre($_GET, 'id'));
             } else if ($_GET['action'] == 'listeCommandes') {
                 $this->c_connexion->listeCommandes();
             } else if ($_GET['action'] == 'gererStock') {
@@ -93,6 +95,8 @@ class Routeur
                 $this->c_connexion->changerQuantiteStock($this->getParametre($_GET, 'id'), $this->getParametre($_POST, 'Quantite'));
             } else if ($_GET['action'] == 'changerPrixStock') {
                 $this->c_connexion->changerPrixStock($this->getParametre($_GET, 'id'), $this->getParametre($_POST, 'Prix'));
+            } else if ($_GET['action'] == 'nettoyerBDD') {
+                $this->c_connexion->nettoyerBDD();
             }
 
             //Panier

@@ -1,4 +1,4 @@
-<?php $titre = "Confirmation des commandes n°" . $id; ?>
+<?php $titre = "Vérification de la commandes n°" . $id; ?>
 
 <?php ob_start(); ?>
 
@@ -34,7 +34,7 @@ foreach ($panier as $d) {
 ?>
 
 <a href="index.php?action=confirmerCommande&id= <?php echo $id; ?>">Confimer la commande</a>
-
+<a href="index.php?action=refuserCommande&id= <?php echo $id; ?>">Refuser la commande</a>
 
 
 <?php $contenu = ob_get_clean(); ?>

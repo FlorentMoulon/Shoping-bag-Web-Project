@@ -1,4 +1,4 @@
-<?php $titre = "Confirmation des commandes"; ?>
+<?php $titre = "Listes des commandes"; ?>
 
 <?php ob_start(); ?>
 

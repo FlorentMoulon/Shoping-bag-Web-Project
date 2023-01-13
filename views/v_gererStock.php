@@ -34,7 +34,7 @@ foreach ($produits as $d) {
                 <div class=\"row\">
                     <label for='Quantite'> Quantité : </label>
                     <input type=\"number\" name=\"Quantite\" min=\"0\" id=\"Quantite\" value=\"" . $d['quantity'] . "\">
-                    <input type=\"submit\" name=\"Actualiser\" value=\"Actualiser quantité\">
+                    <input type=\"submit\" name=\"Actualiser\" value=\"Actualiser la quantité\">
                 </div>
             </form>
 
@@ -42,7 +42,7 @@ foreach ($produits as $d) {
                 <div class=\"row\">
                     <label for='Prix'> Prix : </label>
                     <input type=\"number\" name=\"Prix\" step=0.01 min=0 id=\"Prix\" value=\"" . $d['price'] . "\">
-                    <input type=\"submit\" name=\"Actualiser\" value=\"Actualiser quantité\">
+                    <input type=\"submit\" name=\"Actualiser\" value=\"Actualiser le prix\">
                 </div>
             </form>
         </div>

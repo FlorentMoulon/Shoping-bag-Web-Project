@@ -75,22 +75,20 @@ class Admin extends Model
 
 
 
-    function refusser($idCommande)
+    function refuser($idCommande)
     {
-        //On supprime la comande
-        $sql = 'UPDATE products
-                SET quantity = ?
-                WHERE id = ?';
-        $this->executerRequete($sql, array($idCommande));
-
         //On rajoute les quantité enlever du stock lors de la commande
         foreach ($this->getPanier($idCommande) as $p) {
             $sql = 'SELECT quantity from products
                     where id = ?';
-            $stock = $this->executerRequete($sql, array($p['id']));
+            $stock = $this->executerRequete($sql, array($p['id']))->fetch()['quantity'];
 
             $this->changerQuantiteStock($p['id'], $stock + $p['quantity']);
         }
+
+        //On supprime la comande
+        $sql = 'DELETE FROM orders WHERE id = ?';
+        $this->executerRequete($sql, array($idCommande));
 
         //On supprime les orderitems liés
         $sql = 'DELETE FROM orderitems WHERE order_id = ?';
@@ -101,5 +99,23 @@ class Admin extends Model
     {
         $sql = 'SELECT id, cat_id, name, image, price, quantity  FROM products';
         return  $this->executerRequete($sql, array());
+    }
+
+    function nettoyerBDD()
+    {
+        //On récupère les commandes concernés
+        $sql = 'SELECT id FROM orders
+                WHERE status != 10 and status != 2 and date<?';
+        $commandes = $this->executerRequete($sql, array(date('Y-m-d')));
+
+        foreach ($commandes as $c) {
+            //On supprime la comande
+            $sql = 'DELETE FROM orders WHERE id = ?';
+            $this->executerRequete($sql, array($c['id']));
+
+            //On supprime les orderitems liés
+            $sql = 'DELETE FROM orderitems WHERE order_id = ?';
+            $this->executerRequete($sql, array($c['id']));
+        }
     }
 }

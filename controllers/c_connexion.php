@@ -125,47 +125,93 @@ class C_Connexion
 
     function verifierCommande($idCommande)
     {
-        $panier = $this->admin->getPanier($idCommande);
-        $adresse = $this->admin->getAdresse($idCommande);
+        if (isset($_SESSION['admin'])) {
+            $panier = $this->admin->getPanier($idCommande);
+            $adresse = $this->admin->getAdresse($idCommande);
 
-        $vue = new View("verifierCommande");
+            $vue = new View("verifierCommande");
+        } else {
+            $vue = new View("404");
+        }
+
         $vue->generer(array('panier' => $panier, 'adresse' => $adresse, 'id' => $idCommande));
     }
 
     function confirmerCommande($idCommande)
     {
-        $this->admin->cloturer($idCommande);
-
-        $this->listeCommandes();
+        if (isset($_SESSION['admin'])) {
+            $this->admin->cloturer($idCommande);
+            $this->listeCommandes();
+        } else {
+            $vue = new View("404");
+            $vue->generer(array());
+        }
     }
+
+    function refuserCommande($idCommande)
+    {
+        if (isset($_SESSION['admin'])) {
+            $this->admin->refuser($idCommande);
+            $this->listeCommandes();
+        } else {
+            $vue = new View("404");
+            $vue->generer(array());
+        }
+    }
+
 
     function listeCommandes()
     {
-        $commandes = $this->admin->getCommandes();
-
-        $vue = new View("listeCommandes");
+        if (isset($_SESSION['admin'])) {
+            $commandes = $this->admin->getCommandes();
+            $vue = new View("listeCommandes");
+        } else {
+            $vue = new View("404");
+        }
         $vue->generer(array('commandes' => $commandes));
     }
 
     function gererStock()
     {
-        $produits = $this->admin->getProduits();
-
-        $vue = new View("gererStock");
+        if (isset($_SESSION['admin'])) {
+            $produits = $this->admin->getProduits();
+            $vue = new View("gererStock");
+        } else {
+            $vue = new View("404");
+        }
         $vue->generer(array('produits' => $produits));
     }
 
     function changerQuantiteStock($idProsuit, $quantite)
     {
-        $this->admin->changerQuantiteStock($idProsuit, $quantite);
-
-        $this->gererStock();
+        if (isset($_SESSION['admin'])) {
+            $this->admin->changerQuantiteStock($idProsuit, $quantite);
+            $this->gererStock();
+        } else {
+            $vue = new View("404");
+            $vue->generer(array());
+        }
     }
 
     function changerPrixStock($idProsuit, $prix)
     {
-        $this->admin->changerPrixStock($idProsuit, $prix);
+        if (isset($_SESSION['admin'])) {
+            $this->admin->changerPrixStock($idProsuit, $prix);
+            $this->gererStock();
+        } else {
+            $vue = new View("404");
+            $vue->generer(array());
+        }
+    }
 
-        $this->gererStock();
+    function nettoyerBDD()
+    {
+        if (isset($_SESSION['admin'])) {
+            $this->admin->nettoyerBDD();
+            $this->compte();
+        } else {
+            $vue = new View("404");
+            $vue->generer(array());
+        }
     }
 }
