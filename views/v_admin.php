@@ -5,12 +5,12 @@
 <h1>Bienvenue sur votre espace compte admin <?php echo $pseudo; ?> </h1>
 
 
-<div class="col-md-4 col-md-12">
-    <a href="index.php?action=deconnexion"><button type="button" class="margeTop btn btn-secondary btn-lg">Se déconnecter</button></a>
+<div class="row align-items-start">
+    <a class="col" href="index.php?action=deconnexion"><button type="button" class="margeTop btn btn-secondary btn-lg">Se déconnecter</button></a>
 
-    <a href="index.php?action=listeCommandes"><button type="button" class="margeTop btn btn-secondary btn-lg">Confirmer les commandes</button></a>
+    <a class="col" href="index.php?action=listeCommandes"><button type="button" class="margeTop btn btn-secondary btn-lg">Confirmer les commandes</button></a>
 
-    <a href="index.php?action=gererStock"><button type="button" class="margeTop btn btn-secondary btn-lg">Gérer les stocks</button></a>
+    <a class="col" href="index.php?action=gererStock"><button type="button" class="margeTop btn btn-secondary btn-lg">Gérer les stocks</button></a>
 </div>
 
 <div class="margeTop">
