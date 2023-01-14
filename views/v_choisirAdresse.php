@@ -69,8 +69,8 @@
                             Téléphone :<br>
                         </div>
                         <div class=\"col\">" .
-                    $adresse['forname'] . "</br>" .
                     $adresse['surname'] . "</br>" .
+                    $adresse['forname'] . "</br>" .
                     $adresse['email'] . "</br>" .
                     $adresse['phone'] . "</br>
                         </div>
