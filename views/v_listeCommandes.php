@@ -17,7 +17,7 @@ foreach ($commandes as $d) {
         </div>
 
         <div>
-        <a href=\"index.php?action=verifierCommande&id=" . $d['id'] . "\"><button type=\"button\" class=\"btn btn-primary\"> Vérifier la commande </button></a>
+        <a href=\"index.php?action=verifierCommande&id=" . $d['id'] . "\"><button type=\"button\" class=\"btn btn-secondary\"> Vérifier la commande </button></a>
         </div>
     </div>";
 }

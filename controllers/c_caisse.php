@@ -25,9 +25,13 @@ class C_Caisse
     // A faire
     public function choisirAdresse()
     {
-        $idUser = 1;
+        if (isset($_SESSION['id'])) {
+            $idUser = $_SESSION['id'];
+            $donnes = array('adresse' => $this->caisse->getAdresse($idUser));
+        } else {
+            $donnes = array('adresse' => 0);
+        }
         $vue = new View("choisirAdresse");
-        $donnes = array('adresse' => $this->caisse->getAdresse($idUser));
         $vue->generer($donnes);
     }
 
@@ -40,8 +44,9 @@ class C_Caisse
         return $_SESSION['idPanier'];
     }
 
-    public function choisirPaiementAdresseCompte($idUser)
+    public function choisirPaiementAdresseCompte()
     {
+        $idUser = $_SESSION['id'];
         $adresse = $this->caisse->getAdresse($idUser);
 
         $idPanier = $this->getIdPanier();

@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 
-<h1>Votre panier :</h1>
+<h1 class="mb-5">Votre panier :</h1>
 
 
 <?php
@@ -29,19 +29,19 @@ foreach ($produits as $d) {
         <div>
             <a href=\"index.php?action=" . $action . "&id=" . $d['id'] . "\"><h2>" . $d['name'] . "</h2></a>
             
-            <p>Prix unitaire :<b>" . $d['price'] . "€</b></p>
+            <p>Prix unitaire : <b class=\"btn-outline-dark\">" . $d['price'] . "€</b></p>
 
             <form method=\"Post\" action=\"index.php?action=changer&id=" . $d['id'] . "\">
                 <div class=\"input-group mb-3\">
                     <label for='Quantite'> Quantité : </label>
-                    <input class=\"form-control\" type=\"number\" name=\"Quantite\" max=\"" . $d['quantity'] . "\" id=\"Quantite\" value=\"" . $d['quantity'] . "\">
-                    <input class=\"btn btn-primary\" type=\"submit\" name=\"Actualiser\" value=\"Actualiser quantité\">
+                    <input class=\"form-control border-secondary\" type=\"number\" name=\"Quantite\" max=\"" . $d['quantity'] . "\" id=\"Quantite\" value=\"" . $d['quantity'] . "\">
+                    <input class=\"btn btn-secondary\" type=\"submit\" name=\"Actualiser\" value=\"Actualiser quantité\">
                 </div>
             </form>
 
-            <p>Prix global :<b>" . $d['price'] * $d['quantity'] . "€</b></p>
+            <p>Prix global : <b class=\"btn-outline-dark\">" . $d['price'] * $d['quantity'] . "€</b></p>
 
-            <a href=\"index.php?action=supprimer&id=" . $d['id'] . "\" class=\"btn-default\"><h1>X</h1></a>
+            <a href=\"index.php?action=supprimer&id=" . $d['id'] . "\"> <button type=\"button\" class=\"btn btn-secondary\"> Supprimer </button> </a>
         </div>
                 
     </div>";
@@ -49,11 +49,11 @@ foreach ($produits as $d) {
 
 
 if ($total == 0) {
-    echo "<h2> Vous n'avez rien dans votre panier </h2>
-        <a href=\"index.php?action=boissons\">Aller à la boutique</a>";
+    echo "<h2 class=\"mb-4\"> Vous n'avez rien dans votre panier </h2>
+        <a href=\"index.php?action=boissons\"> <button type=\"button\" class=\"btn btn-secondary btn-lg\"> Aller à la boutique </button></a>";
 } else {
-    echo "<div> Le montant total de votre panier est de " . $total . " € </div>
-        <a href=\"index.php?action=choisirAdresse\">Aller à la caisse</a>";
+    echo "<h2 class=\"mb-4\"> Le montant total de votre panier est de <b class=\"btn-outline-warning\">" . $total . " €</b> </h2>
+        <a href=\"index.php?action=choisirAdresse\"> <button type=\"button\" class=\"btn btn-secondary btn-lg\"> Aller à la caisse </button></a>";
 }
 
 
