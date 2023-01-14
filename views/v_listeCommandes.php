@@ -2,12 +2,13 @@
 
 <?php ob_start(); ?>
 
-<?php
-echo "<h1>" . $titre . "</h1>";
+<?php echo "<h1 class=\"mb-4\">" . $titre . "</h1>"; ?>
 
-foreach ($commandes as $d) {
-    echo
-    "<div class=\"Commande\">
+<span>
+    <?php
+    foreach ($commandes as $d) {
+        echo
+        "<div class=\"Commande\">
         <div>
             Date :     " . $d['date'] . " <br>
             Paiement : " . $d['payment_type'] . " <br>
@@ -20,7 +21,9 @@ foreach ($commandes as $d) {
         <a href=\"index.php?action=verifierCommande&id=" . $d['id'] . "\"><button type=\"button\" class=\"btn btn-secondary\"> Vérifier la commande </button></a>
         </div>
     </div>";
-}
-?>
+    }
+    ?>
+
+</span>
 
 <?php $contenu = ob_get_clean(); ?>

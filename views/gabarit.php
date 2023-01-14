@@ -12,9 +12,7 @@
     <?php require_once(PATH_SHARED_VIEWS . 'navbar.php'); ?>
 
     <div class="page">
-
         <?= $contenu ?>
-
     </div>
 
     <?php require_once(PATH_SHARED_VIEWS . 'footer.php'); ?>
