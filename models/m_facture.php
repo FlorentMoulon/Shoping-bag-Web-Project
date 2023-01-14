@@ -74,27 +74,35 @@ class Facture extends fpdf
     //Contrainte, size doit faire la même taille qu'header
     function ImprovedTable($header, $size, $data){
         // En-tête
-        for($i=0;$i<count($header);$i++)
-            $this->Cell($size[$i],7,$header[$i],1,0,'C');
+        $this->SetFont('Helvetica','B',14);
+        $this->SetFillColor(243, 150, 179);
+        for($i=0;$i<count($header);$i++){
+            $this->Cell($size[$i],7,$header[$i],0,0,'',1);
+        }
         $this->Ln();
+
         // Données
         $i=0;
+        $fill = true;
+        $this->SetFont('Helvetica','',14);
         foreach($data as $row)
         {
             if($i%2==0){
-                $this->SetFillColor(243, 150, 179);
+                $this->SetFillColor(252, 193, 56);
             }
             else{
                 $this->SetFillColor(120, 194, 193);
             }
-            $this->Cell($size[0],6,$row[0],'LR');
-            $this->Cell($size[1],6,$row[1],'LR');
-            $this->Cell($size[2],6,$row[2],'LR',0,'R');
-            $this->Cell($size[3],6,$row[3], 'LR',0,'R');
+            //$this->Cell("size", "hauteur", "contenu", "border", "ln", "align", "fill")
+            $this->Cell($size[0],6,$row[0], 0, 0, '', 1);
+            $this->Cell($size[1],6,$row[1], 0, 0, '', 1);
+            $this->Cell($size[2],6,$row[2], 0, 0, '', 1);
+            $this->Cell($size[3],6,$row[3], 0, 0, '', 1);
             $this->Ln();
         }
+        //$this->Cell($w[0],6,$row[0],'LR',0,'L',$fill);
         // Trait de terminaison
-        $this->Cell(array_sum($size),0,'','T');
+        //$this->Cell(array_sum($size),0,'','T');
     }
     
     
