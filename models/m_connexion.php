@@ -28,7 +28,7 @@ class Connexion extends Model{
                     $_SESSION['admin'] = 1;
                     return "<p class = \" alert-success\"> Connection admin effectuée </p>";
                 }
-                return "<p class = \" alert-warning\"> Mot de passe ou login incorrect </p>";
+                return "<p class = \" alert-danger\"> Mot de passe ou login incorrect </p>";
             }
         }
         catch (Exception $e){

@@ -3,6 +3,7 @@
 //Appel du modèle
 require_once(PATH_MODELS . 'caisse.php');
 require_once(PATH_MODELS . 'panier.php');
+require_once(PATH_MODELS . 'facture.php');
 
 //Appel de la class View
 require_once(PATH_VIEWS . 'View.php');
@@ -11,11 +12,13 @@ class C_Caisse
 {
     private $caisse;
     private $commande;
+    private $facture;
 
     public function __construct()
     {
         $this->caisse = new Caisse();
         $this->commande = new Panier();
+        $this->facture = new Facture();
     }
 
 
@@ -67,6 +70,9 @@ class C_Caisse
         $this->commande->changerStatut($idPanier, 2);
         //On change le mode de paiement
         $this->commande->changerModeDePaiement($idPanier, 'cheque');
+
+        //On génére la facture
+        $this->facture->generer_facture();
 
         $vue = new View("paiementCheque");
         $donnes = array('commande' => $this->commande->getPanier($idPanier), 'total' => $this->commande->getTotal($idPanier));
