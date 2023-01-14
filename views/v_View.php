@@ -12,13 +12,12 @@ class View
 
     public function generer($donnees)
     {
-        $array_navbar = 
         // Génération de la partie spécifique de la vue
         $array_vue = $this->genererFichier($this->fichier, $donnees);
         // Génération du gabarit commun utilisant la partie spécifique
         $vue = $this->genererFichier(GABARIT, $array_vue)['contenu'];
         // Renvoi de la vue au navigateur
-        echo $vue;
+        //echo $vue;
     }
     // Génère un fichier vue et renvoie le résultat produit
     private function genererFichier($fichier, $donnees)
@@ -27,13 +26,13 @@ class View
             // Rend les éléments du tableau $donnees accessibles dans la vue
             extract($donnees);
             // Démarrage de la temporisation de sortie
-            ob_start();
+            //ob_start();
             // Inclut le fichier vue
             // Son résultat est placé dans le tampon de sortie
             include $fichier;
             return array('titre' => $titre, 'contenu' => $contenu);
             // Arrêt de la temporisation et renvoi du tampon de sortie
-            return ob_get_clean();
+            //return ob_get_clean();
         } else {
             throw new Exception("Fichier '$fichier' introuvable.");
         }

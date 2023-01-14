@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="index.php">ISIWEB4SHOP</a>

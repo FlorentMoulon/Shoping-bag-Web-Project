@@ -1,20 +1,12 @@
-footer{
-    display: flex;
-    position:fixed;
-    width: 70%;
-    bottom:0;
-    justify-content: center;
-    padding: 5px;
-    background-color: #222;
-    color: #9d9d9d;
-}
-
-
 .page{
     margin-top: 40px;
     margin-bottom: 40px;
-    margin-left : 15%;
-    margin-right: 15%;
+    margin-left : 20vw;
+    margin-right: 20vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 a{
@@ -34,7 +26,17 @@ label{
 }
 
 .ImageProduit{
-    width: 200px;
+    width: 15vw;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+.InfoProduit{
+    width: 45vw;
+}
+
+.ImageProduitGrande{
+    width: 20vw;
     margin-right: 20px;
     border-radius: 10px;
 }
@@ -46,7 +48,7 @@ label{
 }
 
 .ImageCommentaire{
-    width: 75px;
+    width: 130px;
     margin-right: 20px;
 }
 
@@ -56,20 +58,24 @@ label{
     margin-bottom: 25px;
 }
 
+.separateur{
+    border-radius: 2px;
+    height: 4px;
+    width: 100%;
+
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
 
 .ligne_form{
     margin-bottom: 15px;
-}
-
-input{
-    margin-right: 15px;
 }
 
 .mail{
     width : 25%;
 }
 
-.row{
+.ligne{
     display: flex;
     flex-direction: row;
 }

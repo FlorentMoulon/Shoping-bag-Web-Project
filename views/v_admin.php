@@ -6,11 +6,11 @@
 
 
 <div class="col-md-4 col-md-12">
-    <a href="index.php?action=deconnexion"><button type="button" class="margeTop btn btn-primary btn-lg">Se déconnecter</button></a>
+    <a href="index.php?action=deconnexion"><button type="button" class="margeTop btn btn-secondary btn-lg">Se déconnecter</button></a>
 
-    <a href="index.php?action=listeCommandes"><button type="button" class="margeTop btn btn-primary btn-lg">Confirmer les commandes</button></a>
+    <a href="index.php?action=listeCommandes"><button type="button" class="margeTop btn btn-secondary btn-lg">Confirmer les commandes</button></a>
 
-    <a href="index.php?action=gererStock"><button type="button" class="margeTop btn btn-primary btn-lg">Gérer les stocks</button></a>
+    <a href="index.php?action=gererStock"><button type="button" class="margeTop btn btn-secondary btn-lg">Gérer les stocks</button></a>
 </div>
 
 <div class="margeTop">
@@ -22,7 +22,7 @@
     </p>
 
     <p>
-        <a href="index.php?action=nettoyerBDD"><button type="button" class="btn btn-primary btn-lg">Supprimer les commandes inachevés</button></a>.
+        <a href="index.php?action=nettoyerBDD"><button type="button" class="btn btn-secondary btn-lg">Supprimer les commandes inachevés</button></a>.
     </p>
 </div>
 

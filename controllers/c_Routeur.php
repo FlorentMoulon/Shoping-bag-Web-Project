@@ -113,7 +113,7 @@ class Routeur
             else if ($_GET['action'] == 'choisirAdresse') {
                 $this->c_caisse->choisirAdresse();
             } else if ($_GET['action'] == 'AncienneAdresse') {
-                $this->c_caisse->choisirPaiementAdresseCompte(1);
+                $this->c_caisse->choisirPaiementAdresseCompte();
             } else if ($_GET['action'] == 'NvAdresse') {
                 $this->c_caisse->choisirPaiementNvAdresse($this->getParametre($_POST, 'Prenom'), $this->getParametre($_POST, 'Nom'), $this->getParametre($_POST, 'Rue'), $this->getParametre($_POST, 'C_Rue'), $this->getParametre($_POST, 'Ville'), $this->getParametre($_POST, 'Postal'), $this->getParametre($_POST, 'Telephone'), $this->getParametre($_POST, 'Mail'));
             } else if ($_GET['action'] == 'paiementCheque') {

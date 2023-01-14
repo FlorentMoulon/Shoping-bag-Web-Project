@@ -38,12 +38,12 @@ foreach ($produits as $d) {
     echo
     "<div class=\"Produit\">
         <div><img class=\"ImageProduit\" src=\"" . IMAGE . $d['image'] . "\" alt=\"image : " . $d['name'] . "\"></div>
-        <div>
-            <h3 class=\"Alert\">" . $comment . "</h3>
+        <div class=\"InfoProduit\">
             <h2>" . $d['name'] . "</h2>
+            <h2 class=\"Alert\">" . $comment . "</h2>
             <p>" .  $d['description'] . "</p>
             <p><b>Notre prix :" . $d['price'] . "€</b></p>
-            <a class=\"\" href=\"index.php?action=" . $action . "&id=" . $d['id'] . "\"><button type=\"button\" class=\"btn btn-primary\">Acheter</button></a>
+            <a class=\"\" href=\"index.php?action=" . $action . "&id=" . $d['id'] . "\"><button type=\"button\" class=\"btn btn-secondary\">Acheter</button></a>
         </div>
     </div>";
 }
