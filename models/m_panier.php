@@ -9,7 +9,7 @@ class Panier extends Model
     // Renvoie la liste des objets dans le panier
     function getPanier($idPanier)
     {
-        $sql = 'select P.cat_id, P.id, P.name, P.description, P.image, P.price, OI.quantity from orders O
+        $sql = 'select P.cat_id, P.id, P.name, P.description, P.image, P.price, P.quantity as quantityMAX, OI.quantity from orders O
             join orderitems OI on OI.order_id=O.id
             join products P on P.id=OI.product_id
             where O.id = ?';
@@ -17,8 +17,9 @@ class Panier extends Model
         return   $panier;
     }
 
-    
-    public function get_adresse_commande($delivery_id){ //Récupération d'une adresse a partir de l'id associée
+
+    public function get_adresse_commande($delivery_id)
+    { //Récupération d'une adresse a partir de l'id associée
         $sql = "SELECT firstname, lastname, add1, add2, city, postcode, phone, email
                 FROM delivery_adress 
                 WHERE id = ?";

@@ -40,7 +40,7 @@ foreach ($produits as $d) {
         <div><img class=\"ImageProduit\" src=\"" . IMAGE . $d['image'] . "\" alt=\"image : " . $d['name'] . "\"></div>
         <div class=\"InfoProduit\">
             <h2>" . $d['name'] . "</h2>
-            <h2 class=\"Alert\">" . $comment . "</h2>
+            <h4 class=\"Alert\">" . $comment . "</h4>
             <p>" .  $d['description'] . "</p>
             <p><b>Notre prix :" . $d['price'] . "€</b></p>
             <a class=\"\" href=\"index.php?action=" . $action . "&id=" . $d['id'] . "\"><button type=\"button\" class=\"btn btn-secondary\">Acheter</button></a>
