@@ -17,6 +17,14 @@ class Panier extends Model
         return   $panier;
     }
 
+    
+    public function get_adresse_commande($delivery_id){ //Récupération d'une adresse a partir de l'id associée
+        $sql = "SELECT firstname, lastname, add1, add2, city, postcode, phone, email
+                FROM delivery_adress 
+                WHERE id = ?";
+        return $this->executerRequete($sql, array($delivery_id))->fetch();
+    }
+
     // Renvoie le prix total de la commande
     function getTotal($idPanier)
     {
