@@ -31,23 +31,10 @@ abstract class Model
         return $this->bdd;
     }
 
-<<<<<<< HEAD
     public function get_adresse_commande($delivery_id){ //Récupération d'une adresse a partir de l'id associée
         $sql = "SELECT firstname, lastname, add1, add2, city, postcode, phone, email
                 FROM delivery_adress 
                 WHERE id = ?";
         return $this->executerRequete($sql, array($delivery_id))->fetch();
-=======
-    protected function getIdMax($nomTable)
-    {
-
-        $sql = 'SELECT max(id) 
-        FROM ?';
-
-        $id = $this->executerRequete($sql, array($nomTable));
-        print_r($id);
-        if ($id->rowCount() == 1)   return $id->fetch()['max(id)'];
-        else throw new Exception("Erreur dans les champs requête");
->>>>>>> 0f91347df48433fd0e1d618ea2ad561bf0fe9602
     }
 }
