@@ -28,7 +28,7 @@ Remplisser le chèque avec les informations suivantes :<br><br>
     Une fois rempli, envoyer le chèque par courrier postal à : <b>15 Bd André Latarjet, 69100 Villeurbanne</b>
 </p>
 <p>
-    N'oublier pas de timbrer votre enveloppe et de noter une adresse de retour, afin que vous puissiez le renvoyer en cas d'erreur ou de problème.
+    N'oubliez pas de timbrer votre enveloppe et de noter une adresse de retour, afin que vous puissiez le renvoyer en cas d'erreur ou de problème.
 </p>
 
 

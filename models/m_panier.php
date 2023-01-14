@@ -17,13 +17,26 @@ class Panier extends Model
         return   $panier;
     }
 
+    public function get_delivery_id($id_panier){
+        $sql = "SELECT delivery_add_id
+                FROM orders
+                WHERE id = ?";
+        
+        $delivery_id = $this->executerRequete($sql, array($id_panier));
 
-    public function get_adresse_commande($delivery_id)
+        if ($delivery_id->rowCount() == 1)   return $delivery_id->fetch(); // Accès à la première ligne de résultat 
+        else throw new Exception("Erreur dans la récupération de l'id delivery adress");
+    }
+
+    public function get_adresse_commande($id_delivery)
     { //Récupération d'une adresse a partir de l'id associée
         $sql = "SELECT firstname, lastname, add1, add2, city, postcode, phone, email
-                FROM delivery_adress 
+                FROM delivery_addresses
                 WHERE id = ?";
-        return $this->executerRequete($sql, array($delivery_id))->fetch();
+
+        $commande_id = $this->executerRequete($sql, array($id_delivery));
+        if ($commande_id->rowCount() == 1)   return $commande_id->fetch(); // Accès à la première ligne de résultat 
+        else throw new Exception("Erreur dans la récupération de l'id de la commande");
     }
 
     // Renvoie le prix total de la commande
