@@ -9,7 +9,7 @@
     <h2>Adresse de votre compte</h2>
     <?php
     if ($adresse == 0) {
-        echo "Vous n'avez pas d'adresse enregistrer ou vous n'êtes pas connecté. </br>";
+        echo "Vous n'avez pas d'adresse enregistrée ou vous n'êtes pas connecté. </br>";
     } else {
         echo
         "<div class=\"row\">
