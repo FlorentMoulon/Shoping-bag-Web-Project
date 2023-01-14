@@ -45,7 +45,7 @@ class C_Caisse
         $adresse = $this->caisse->getAdresse($idUser);
 
         $idPanier = $this->getIdPanier();
-        $this->commande->changerAdresse($idPanier, $adresse['forname'], $adresse['surname'], $adresse['add1'], $adresse['add2'], $adresse['add3'], $adresse['postcode'], $adresse['phone'], $adresse['email']);
+        $this->caisse->changerAdresse($idPanier, $adresse['forname'], $adresse['surname'], $adresse['add1'], $adresse['add2'], $adresse['add3'], $adresse['postcode'], $adresse['phone'], $adresse['email']);
 
         $vue = new View("choisirPaiement");
         $donnes = array();
@@ -55,7 +55,7 @@ class C_Caisse
     public function choisirPaiementNvAdresse($first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email)
     {
         $idPanier = $this->getIdPanier();
-        $this->commande->changerAdresse($idPanier, $first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email);
+        $this->caisse->changerAdresse($idPanier, $first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email);
 
         $vue = new View("choisirPaiement");
         $donnes = array();
@@ -66,10 +66,10 @@ class C_Caisse
     {
         $idPanier = $this->getIdPanier();
 
-        //On change le statut de la commande
-        $this->commande->changerStatut($idPanier, 2);
         //On change le mode de paiement
-        $this->commande->changerModeDePaiement($idPanier, 'cheque');
+        $this->caisse->changerModeDePaiement($idPanier, 'cheque');
+        //On fini la comande
+        $this->caisse->finirCommande($idPanier);
 
         //On génére la facture
         $this->facture->generer_facture();
@@ -83,10 +83,10 @@ class C_Caisse
     {
         $idPanier = $this->getIdPanier();
 
-        //On change le statut de la commande
-        $this->commande->changerStatut($idPanier, 2);
         //On change le mode de paiement
-        $this->commande->changerModeDePaiement($idPanier, 'paypal');
+        $this->caisse->changerModeDePaiement($idPanier, 'paypal');
+        //On fini la comande
+        $this->caisse->finirCommande($idPanier);
 
         $vue = new View("paiementPaypal");
         $donnes = array('commande' => $this->commande->getPanier($idPanier), 'total' => $this->commande->getTotal($idPanier));

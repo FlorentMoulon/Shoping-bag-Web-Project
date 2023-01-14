@@ -11,23 +11,26 @@
         <div><img class=\"ImageProduit\" src=\"" . IMAGE . $produit['image'] . "\" alt=\"image : " . $produit['name'] . "\"></div>
         <div>
             <p>" .  $produit['description'] . "</p>
-            <b>Notre prix :" . $produit['price'] . "€</b>
-            <b>Quantité restante :" . $produit['quantity'] . "</b>
-        </div>
-    </div>";
+            <p><b>Notre prix : " . $produit['price'] . "€</b></p>
+            <p><b>Quantité restante : " . $produit['quantity'] . "</b></p>";
 
 
     if ($produit['quantity'] > 0) {
         echo "<div class=\"Achat\">
                 <form method='POST' action=\"index.php?action=ajouter&id=" . $produit['id'] . "\">
-                <label for=\"Nombre\"></label>
-                <input type=\"number\" min=\"1\" max=\"" . $produit['quantity'] . "\" id='Nombre' name='Nombre' value=\"1\">
-                <input type=\"submit\" name='Acheter' value=\"Acheter\">
+                    <div class=\"input-group mb-3\">
+                        <label for=\"Nombre\"></label>
+                        <input class=\"form-control\" type=\"number\" min=\"1\" max=\"" . $produit['quantity'] . "\" id='Nombre' name='Nombre' value=\"1\">
+                        <input class=\"btn btn-primary\" type=\"submit\" name='Acheter' value=\"Acheter\">
+                    </div>
                 </form>
             </div>";
     } else {
-        echo "<h2> Désolé mais ce produit en rupture de stocks, revener plus tard.</h2>";
+        echo "<h2> Désolé mais ce produit en rupture de stocks, revenez plus tard.</h2>";
     }
+
+    echo "        </div>
+                </div>";
 
 
     ?>

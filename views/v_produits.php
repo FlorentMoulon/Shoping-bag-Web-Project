@@ -42,8 +42,8 @@ foreach ($produits as $d) {
             <h3 class=\"Alert\">" . $comment . "</h3>
             <h2>" . $d['name'] . "</h2>
             <p>" .  $d['description'] . "</p>
-            <b>Notre prix :" . $d['price'] . "€</b>
-            <a href=\"index.php?action=" . $action . "&id=" . $d['id'] . "\">[acheter]</a>
+            <p><b>Notre prix :" . $d['price'] . "€</b></p>
+            <a class=\"\" href=\"index.php?action=" . $action . "&id=" . $d['id'] . "\"><button type=\"button\" class=\"btn btn-primary\">Acheter</button></a>
         </div>
     </div>";
 }

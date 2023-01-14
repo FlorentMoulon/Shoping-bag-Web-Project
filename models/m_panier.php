@@ -59,37 +59,6 @@ class Panier extends Model
     }
 
 
-    function nouvelleAdresse($first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email)
-    {
-        //on récupère l'id existant le plus élévé
-        $sql = 'SELECT max(id) FROM delivery_addresses';
-        $id_max = $this->executerRequete($sql, array());
-        if ($id_max->rowCount() == 1)   $id_max = $id_max->fetch()['max(id)'];
-        else throw new Exception("Pas de max '$id_max'");
-        //on ajoute 1 pour avoir avoir un id libre
-        $id_max++;
-
-        //on crée la nouvelle adresse dans la BDD
-        $sql = "insert INTO delivery_addresses 
-            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $this->executerRequete($sql, array($id_max, $first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email));
-
-        return $id_max;
-    }
-
-
-    function changerAdresse($idPanier, $first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email)
-    {
-
-        $idAdresse = $this->nouvelleAdresse($first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email);
-
-        $sql = 'UPDATE orders
-            SET delivery_add_id = ?
-            WHERE id = ?';
-        $this->executerRequete($sql, array($idAdresse, $idPanier));
-
-        $this->changerStatut($idPanier, 1);
-    }
 
 
     function creerPanier()
@@ -165,21 +134,5 @@ class Panier extends Model
         $this->executerRequete($sql, array($nvQuantite, $idProduit, $idPanier));
 
         $this->changerTotal($idPanier);
-    }
-
-    function changerStatut($idPanier, $statut)
-    {
-        $sql = 'UPDATE orders O
-            SET O.status = ?
-            WHERE id=?';
-        $this->executerRequete($sql, array($statut, $idPanier));
-    }
-
-    function changerModeDePaiement($idPanier, $mode)
-    {
-        $sql = 'UPDATE orders O
-            SET O.payment_type = ?
-            WHERE id=?';
-        $this->executerRequete($sql, array($mode, $idPanier));
     }
 }

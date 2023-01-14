@@ -4,17 +4,26 @@
 
 <h1>Bienvenue sur votre espace compte admin <?php echo $pseudo; ?> </h1>
 
-<p>
-    <a href="index.php?action=deconnexion"><b>Se déconnecter</b></a>.
-</p>
 
-<form action="index.php?action=connexion" method="post">
-    <label for="Username">Username</label>
-    <input type="text" id="Username" name="Username">
+<div class="col-md-4 col-md-12">
+    <a href="index.php?action=deconnexion"><button type="button" class="margeTop btn btn-primary btn-lg">Se déconnecter</button></a>
 
-    <label for="Password">Password</label>
-    <input type="password" id="Password" name="Password">
+    <a href="index.php?action=listeCommandes"><button type="button" class="margeTop btn btn-primary btn-lg">Confirmer les commandes</button></a>
 
-    <input type="submit" name="connexion" id="connexion" value="Connexion">
-</form>
+    <a href="index.php?action=gererStock"><button type="button" class="margeTop btn btn-primary btn-lg">Gérer les stocks</button></a>
+</div>
+
+<div class="margeTop">
+    <h3>Voulez-vous supprimmer les panier non validé de plus d'un jour ?</h3>
+
+    <p>
+        A chaque fois qu'une personne commence son shopping, une nouvelle commande est généré dans la base de donnée.
+        En appuyant sur le bouton si dessus, vous supprimerez les commandes et les informations liés de la base de données.
+    </p>
+
+    <p>
+        <a href="index.php?action=nettoyerBDD"><button type="button" class="btn btn-primary btn-lg">Supprimer les commandes inachevés</button></a>.
+    </p>
+</div>
+
 <?php $contenu = ob_get_clean(); ?>
