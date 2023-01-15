@@ -23,7 +23,9 @@ class Facture extends fpdf
 //reste a faire 
 //nom générer correquement
 //adresse
-//
+
+
+
     public function generer_facture(){
         $date = date('Y-m-d');
         $nom_facture = "$date-WEB4SHOP$this->id_panier-Facture.pdf"; //nom de la facture
@@ -46,6 +48,7 @@ class Facture extends fpdf
         $delivery_id = $this->commande->get_delivery_id($this->id_panier);
         $adresse = $this->commande->get_adresse_commande($delivery_id['delivery_add_id']);
         $info_commande = array("Numéro de facture : ".$this->id_panier, "Date de la commande : ".$date);
+
         //Execution du script de création du PDF
         ob_start(); 
         $this->SetTitle("Facture");
@@ -60,15 +63,35 @@ class Facture extends fpdf
         ob_end_flush();
     }
 
+
+    //Fonctions pour convertir en "windows-1252" pour la gestion des accents
+    private function c_str($string){
+        return iconv('UTF-8', 'windows-1252', $string);
+    }
+
+    private function c_tab($tab){
+        $n_tab = array();
+        foreach($tab as $cle =>$val){
+            $n_tab[$cle] = $this->c_str($val);
+        }
+        return $n_tab;
+    }
+
+
     //Fonction pour écrire l'adresse sur le PDF 
     //adresse : array(nom, prenom, adr, complement_adr, code postal , ville)
     function ecritEnteteFacture($adresse, $info_commande, $hauteur = 40){
-        //On veut l'écrire en bleu clair 
-        //firstname, lastname, add1, add2, city, postcode, phone, email
+        //formatage des paramètres :
+        $adresse = $this->c_tab($adresse);
+        $info_commande = $this->c_tab($info_commande);
+        
+        //Paramètres d'écritures 
         $hauteur_ref = $hauteur;
         $this->SetFont('Helvetica','',12);
         $this->setTextColor(155,204,203);
         $this->SetLeftMargin(25);
+
+        //Ecriture de l'adresse
         $this->SetY($hauteur);
         $hauteur += 5;
         $this->Cell(80, 0, $adresse['firstname']." ".$adresse['lastname'], 0, 1);
@@ -85,7 +108,7 @@ class Facture extends fpdf
         $this->Cell(80, 0, $adresse['postcode']." ".$adresse['city'], 0, 1);
         $this->SetY($hauteur);
         $hauteur += 5;
-        $this->Cell(80, 0, "Téléphone : ".$adresse['phone'], 0, 1); 
+        $this->Cell(80, 0, $this->c_str("Téléphone : ").$adresse['phone'], 0, 1); 
         
         //Ecriture des infos de la commande
         $this->SetLeftMargin(110);
@@ -93,7 +116,6 @@ class Facture extends fpdf
         $this->Cell(80, 0, $info_commande[0], 0, 1);
         $this->SetY($hauteur_ref + 5);
         $this->Cell(80, 0, $info_commande[1], 0,1);
-
     }
 
     function Header(){
@@ -129,6 +151,7 @@ class Facture extends fpdf
     //Contrainte, size doit faire la même taille qu'header
     function ImprovedTable($header, $size, $data){
         // En-tête
+        $header = $this->c_tab($header);
         $this->SetFont('Helvetica','B',14);
         $this->SetTextColor(15,15,15);
         $this->SetFillColor(243, 150, 179);
@@ -143,6 +166,7 @@ class Facture extends fpdf
         $this->SetFont('Helvetica','',14);
         foreach($data as $row)
         {
+            $row = $this->c_tab($row);
             if($color){
                 $this->SetFillColor(252, 193, 56); //Jaune
             }
