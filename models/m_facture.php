@@ -20,11 +20,6 @@ class Facture extends fpdf
         $this->nom_facture = "Facture";
     }
 
-//reste a faire 
-//nom générer correquement
-//adresse
-
-
 
     public function generer_facture(){
         $date = date('Y-m-d');
@@ -32,7 +27,7 @@ class Facture extends fpdf
         
         //Pour le tableau
         $header = array("Nom du produit", "Quantité", "Prix unitaire", "Sous total");
-        $taille = array(80, 30, 40, 40);
+        $taille = array(90, 30, 35, 35);
         $requete_commande = $this->commande->getPanier($this->id_panier)->fetchAll();
         $tab_commande = array();
         
@@ -47,7 +42,7 @@ class Facture extends fpdf
         //Récupération de l'adresse        
         $delivery_id = $this->commande->get_delivery_id($this->id_panier);
         $adresse = $this->commande->get_adresse_commande($delivery_id['delivery_add_id']);
-        $info_commande = array("Numéro de facture : ".$this->id_panier, "Date de la commande : ".$date);
+        $info_commande = array("Numéro de facture : WEB4SHOP".$this->id_panier, "Date de la commande : ".$date);
 
         //Execution du script de création du PDF
         ob_start(); 
@@ -55,10 +50,9 @@ class Facture extends fpdf
         $this->AddPage();
         $this->SetFont('Helvetica','',1);
         $this->Ln();
-        $this->ecritEnteteFacture($adresse, $info_commande);
-        $this->SetY(110);
+        $ref = $this->ecritEnteteFacture($adresse, $info_commande);
         $this->SetLeftMargin(10);
-        $this->ImprovedTable($header, $taille, $tab_commande);
+        $this->ImprovedTable($header, $taille, $tab_commande, $ref);
         $this->Output('D', $nom_facture, true);
         ob_end_flush();
     }
@@ -79,45 +73,46 @@ class Facture extends fpdf
 
 
     //Fonction pour écrire l'adresse sur le PDF 
-    //adresse : array(nom, prenom, adr, complement_adr, code postal , ville)
-    function ecritEnteteFacture($adresse, $info_commande, $hauteur = 40){
+    function ecritEnteteFacture($adresse, $info_commande, $hauteur = 40, $s_ligne = 6){
         //formatage des paramètres :
         $adresse = $this->c_tab($adresse);
         $info_commande = $this->c_tab($info_commande);
         
         //Paramètres d'écritures 
         $hauteur_ref = $hauteur;
-        $this->SetFont('Helvetica','',12);
-        $this->setTextColor(155,204,203);
+        $this->SetFont('Helvetica','',13);
+        $this->setTextColor(130,189,188);
         $this->SetLeftMargin(25);
 
         //Ecriture de l'adresse
         $this->SetY($hauteur);
-        $hauteur += 5;
+        $hauteur += $s_ligne;
         $this->Cell(80, 0, $adresse['firstname']." ".$adresse['lastname'], 0, 1);
         $this->SetY($hauteur);
-        $hauteur += 5;
+        $hauteur +=  $s_ligne;
         $this->Cell(80, 0, $adresse['add1'], 0,1);
         if($adresse['add2']!=""){
             $this->SetY($hauteur);
-            $hauteur += 5;
+            $hauteur +=  $s_ligne;
             $this->Cell(80, 0, $adresse['add2'], 0,1);
         }
         $this->SetY($hauteur);
-        $hauteur += 5;
+        $hauteur +=  $s_ligne;
         $this->Cell(80, 0, $adresse['postcode']." ".$adresse['city'], 0, 1);
         $this->SetY($hauteur);
-        $hauteur += 5;
+        $hauteur +=  $s_ligne;
         $this->Cell(80, 0, $this->c_str("Téléphone : ").$adresse['phone'], 0, 1); 
         
         //Ecriture des infos de la commande
         $this->SetLeftMargin(110);
         $this->SetY($hauteur_ref);
         $this->Cell(80, 0, $info_commande[0], 0, 1);
-        $this->SetY($hauteur_ref + 5);
-        $this->Cell(80, 0, $info_commande[1], 0,1);
+        $this->SetY($hauteur_ref +  $s_ligne);
+        $this->Cell(80, 0, $info_commande[1], 0, 1);
+        return $hauteur;
     }
 
+    //Header (surcharge)
     function Header(){
         // Logo
         $this->Image('assets/productimages/Web4ShopHeader.png',10,6,45);
@@ -131,7 +126,7 @@ class Facture extends fpdf
         // Saut de ligne
         $this->Ln(10);
         $this->SetDrawColor(120, 194, 193);
-        $this->Line(30, 26, 180, 26);
+        //$this->Line(30, 26, 180, 26);
         $this->Ln(20);
     }
 
@@ -139,6 +134,7 @@ class Facture extends fpdf
     // Pied de page
     function Footer()
     {
+        $this->Line(30, 283, 180, 283);
         // Positionnement à 1,5 cm du bas
         $this->SetY(-15);
         // Police Arial italique 8
@@ -149,13 +145,17 @@ class Facture extends fpdf
 
     // Tableau amélioré
     //Contrainte, size doit faire la même taille qu'header
-    function ImprovedTable($header, $size, $data){
+    function ImprovedTable($header, $size, $data, $ref){
+        //Parametre
+        $hauteur_deb = $ref + 10;
+        $this->SetY($hauteur_deb);
+        $this->SetTextColor(15,15,15);
+        $this->SetX(10);
+
         // En-tête
+        $this->SetFillColor(243, 150, 179);
         $header = $this->c_tab($header);
         $this->SetFont('Helvetica','B',14);
-        $this->SetTextColor(15,15,15);
-        $this->SetFillColor(243, 150, 179);
-        $this->SetX(10);
         for($i=0;$i<count($header);$i++){
             $this->Cell($size[$i],7,$header[$i],0,0,'',1);
         }
@@ -164,9 +164,11 @@ class Facture extends fpdf
         // Données
         $color = true;
         $this->SetFont('Helvetica','',14);
+        $total = 0;
         foreach($data as $row)
         {
             $row = $this->c_tab($row);
+            $total = $total + $row[3];
             if($color){
                 $this->SetFillColor(252, 193, 56); //Jaune
             }
@@ -181,12 +183,11 @@ class Facture extends fpdf
             $this->Cell($size[3],6,$row[3], 0, 0, '', 1);
             $this->Ln();
         }
-        //$this->Cell($w[0],6,$row[0],'LR',0,'L',$fill);
-        // Trait de terminaison
-        //$this->Cell(array_sum($size),0,'','T');
+        $pos = $this->getY();
+        $this->Line(20, $pos + 5, 190, $pos + 5);
+        $this->SetY($pos + 10);
+        $this->Cell(50, 0, "Total   :");
+        $this->SetXY(-20, $pos + 10);
+        $this->Cell(20, 0, $total);
     }
-    
-    
-    
-    
 }
