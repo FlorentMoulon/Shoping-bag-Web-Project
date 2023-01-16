@@ -20,6 +20,10 @@ footer{
     flex-shrink: 0;
 }
 
+.bg-gold{
+    background-color: #fec345;
+}
+
 a{
     text-decoration: none;
 }
@@ -131,4 +135,12 @@ label{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+
+.mr-1{
+    margin-right: 10px;
+}
+
+.mr-3{
+    margin-right: 30px;
 }

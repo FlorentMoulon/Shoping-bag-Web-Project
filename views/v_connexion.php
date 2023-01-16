@@ -10,7 +10,7 @@
 </p>
 
 <form action="index.php?action=connexion" method="post">
-    <div class="form-inline ligne_form">
+    <div class="form-inline ligne_form center">
         <label for="Username">Username</label>
         <input class="mb-3 form-control border-secondary" type="text" id="Username" name="Username">
 
