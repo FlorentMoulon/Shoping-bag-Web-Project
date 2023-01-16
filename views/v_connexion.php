@@ -8,7 +8,10 @@
     Merci d'entrer votre identifiant et votre mot de passe pour acceder à votre espace client. Si vous n'avez pas
     de compte client vous pouvez en créér un gratuitement ici : <a href="index.php?action=enregistrement"><button class="btn btn-secondary btn-sm">Enregistrement</button></a>
 </p>
+<?php 
+echo $Co;
 
+?>
 <form action="index.php?action=connexion" method="post">
     <div class="form-inline ligne_form center">
         <label for="Username">Username</label>
@@ -22,6 +25,5 @@
 </form>
 <?php
 echo "<h1 class=\"btn-outline-warning\">" . $Co . "</h2>";
-
 ?>
 <?php $contenu = ob_get_clean(); ?>
