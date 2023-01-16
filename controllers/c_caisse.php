@@ -22,10 +22,9 @@ class C_Caisse
     }
 
 
-    // A faire
     public function choisirAdresse()
     {
-        if (isset($_SESSION['id'])) {
+        if (isset($_SESSION['id']) && !isset($_SESSION['admin'])) {
             $idUser = $_SESSION['id'];
             $donnes = array('adresse' => $this->caisse->getAdresse($idUser));
         } else {
@@ -82,6 +81,9 @@ class C_Caisse
         $vue = new View("paiementCheque");
         $donnes = array('commande' => $this->commande->getPanier($idPanier), 'total' => $this->commande->getTotal($idPanier));
         $vue->generer($donnes);
+
+        //On génére la facture
+        $this->facture->generer_facture();
     }
 
     public function paiementPaypal()

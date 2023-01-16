@@ -47,30 +47,24 @@
                     <h4 class=\"mb-3\">Adresse</h4>
                     <div class=\"mb-5 row align-items-start\">
                         <div class=\"col\">
+                            Nom :<br>
+                            Prénom :<br></br>
+
                             Adresse :<br>
                             Complément d'adresse :<br>
                             Code postal :<br>
-                            Ville :<br>
-                        </div>
-                        <div class=\"col\">" .
-                    $adresse['add1'] . "</br>" .
-                    $adresse['add2'] . "</br>" .
-                    $adresse['add3'] . "</br>" .
-                    $adresse['postcode'] . "</br>
-                        </div>
-                    </div>
+                            Ville :<br></br>
 
-                    <h4 class=\"mb-3\">Contact</h4>
-                    <div class=\"mb-5 row align-items-start\">
-                        <div class=\"col\">
-                            Nom :<br>
-                            Prénom :<br>
                             Mail: <br>
                             Téléphone :<br>
                         </div>
                         <div class=\"col\">" .
                     $adresse['surname'] . "</br>" .
-                    $adresse['forname'] . "</br>" .
+                    $adresse['forname'] . "</br></br>" .
+                    $adresse['add1'] . "</br>" .
+                    $adresse['add2'] . "</br>" .
+                    $adresse['add3'] . "</br>" .
+                    $adresse['postcode'] . "</br></br>" .
                     $adresse['email'] . "</br>" .
                     $adresse['phone'] . "</br>
                         </div>

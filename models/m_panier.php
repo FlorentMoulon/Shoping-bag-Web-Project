@@ -17,11 +17,12 @@ class Panier extends Model
         return   $panier;
     }
 
-    public function get_delivery_id($id_panier){
+    public function get_delivery_id($id_panier)
+    {
         $sql = "SELECT delivery_add_id
                 FROM orders
                 WHERE id = ?";
-        
+
         $delivery_id = $this->executerRequete($sql, array($id_panier));
 
         if ($delivery_id->rowCount() == 1)   return $delivery_id->fetch(); // Accès à la première ligne de résultat 
@@ -86,7 +87,7 @@ class Panier extends Model
         $id_max++;
 
         //on regarde si l'utilisateur est connecté
-        if (empty($_SESSION['id'])) {
+        if (empty($_SESSION['id']) || isset($_SESSION['admin'])) {
             $registered = 0;
             $id_customer = -1;
         } else {
