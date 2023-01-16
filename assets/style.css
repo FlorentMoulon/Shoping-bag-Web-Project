@@ -61,6 +61,18 @@ label{
     border-radius: 10px;
 }
 
+.ImageProduitMoyenne{
+    width: 10vw;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+.ImageProduitPetit{
+    height: 8vh;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
 .Commentaire{
     display: flex;
     flex-direction: row;
@@ -131,10 +143,10 @@ label{
     margin-top: 25px;
 }
 
-.BoutonConfirmer{
+.BoutonsConfirmer{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .mr-1{
@@ -143,4 +155,13 @@ label{
 
 .mr-3{
     margin-right: 30px;
+}
+
+.large{
+    width: 60vw;
+}
+
+.space{
+    display: flex;
+    justify-content: space-around;
 }

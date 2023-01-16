@@ -22,7 +22,7 @@ switch ($categorie) {
 <?php ob_start(); ?>
 
 <?php
-echo "<h1>" . $titre . "</h1>";
+echo "<h1 class=\"mb-5\">" . $titre . "</h1>";
 
 foreach ($produits as $d) {
 
@@ -37,13 +37,19 @@ foreach ($produits as $d) {
 
     echo
     "<div class=\"Produit\">
-        <div><img class=\"ImageProduit\" src=\"" . IMAGE . $d['image'] . "\" alt=\"image : " . $d['name'] . "\"></div>
+        <div><img class=\"ImageProduitMoyenne\" src=\"" . IMAGE . $d['image'] . "\" alt=\"image : " . $d['name'] . "\"></div>
         <div class=\"InfoProduit\">
-            <h2>" . $d['name'] . "</h2>
-            <h4 class=\"Alert\">" . $comment . "</h4>
+            <div class=\"ligne center\">
+                <h2 class=\"mr-3\">" . $d['name'] . "</h2>
+                <h4 class=\"Alert\">" . $comment . "</h4>
+            </div>
+
             <p>" .  $d['description'] . "</p>
-            <p><b>Notre prix :" . $d['price'] . "€</b></p>
-            <a class=\"\" href=\"index.php?action=" . $action . "&id=" . $d['id'] . "\"><button type=\"button\" class=\"btn btn-secondary\">Acheter</button></a>
+            
+            <div class=\"ligne\">
+                <p class=\"mr-3\"><b>Notre prix : " . $d['price'] . "€</b></p>
+                <a href=\"index.php?action=" . $action . "&id=" . $d['id'] . "\"><button type=\"button\" class=\"btn btn-secondary\">Acheter</button></a>
+            </div>
         </div>
     </div>";
 }
