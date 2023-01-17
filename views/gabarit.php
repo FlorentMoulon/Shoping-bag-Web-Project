@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="assets/style.css"/>
+    <script type="text/javascript" src="assets/bootstrap/js/bootstrap.js"></script>    
     <title><?= $titre ?></title>
 </head>
 
