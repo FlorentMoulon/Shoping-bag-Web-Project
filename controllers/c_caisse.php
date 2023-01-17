@@ -72,18 +72,26 @@ class C_Caisse
 
         //On change le mode de paiement
         $this->caisse->changerModeDePaiement($idPanier, 'cheque');
-        //On fini la comande
-        $this->caisse->finirCommande($idPanier);
-
-        //On génére la facture
-        $this->facture->generer_facture();
 
         $vue = new View("paiementCheque");
         $donnes = array('commande' => $this->commande->getPanier($idPanier), 'total' => $this->commande->getTotal($idPanier));
         $vue->generer($donnes);
+    }
 
-        //On génére la facture
-        $this->facture->generer_facture();
+    public function factureCheque()
+    {
+        if (isset($_SESSION['idPanier'])) {
+            //On génére la facture
+            $this->facture->generer_facture();
+
+            $idPanier = $this->getIdPanier();
+            //On fini la comande
+            $this->caisse->finirCommande($idPanier);
+        } else {
+            $vue = new View("home");
+            $donnes = array();
+            $vue->generer($donnes);
+        }
     }
 
     public function paiementPaypal()

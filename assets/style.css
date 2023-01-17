@@ -24,6 +24,14 @@ footer{
     background-color: #fec345;
 }
 
+.color-gold{
+    color: #fec345;
+}
+
+.padding{
+    padding: 10px;
+}
+
 a{
     text-decoration: none;
 }
