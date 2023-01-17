@@ -4,8 +4,8 @@ body{
 }
 
 .page{
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
     margin-left : 20vw;
     margin-right: 20vw;
 
@@ -13,11 +13,15 @@ body{
     flex-direction: column;
     align-items: center;
 
-    flex: 1;
+    min-height: 81vh;
 }
 
 footer{
     flex-shrink: 0;
+}
+
+.bg-gold{
+    background-color: #fec345;
 }
 
 a{
@@ -53,6 +57,18 @@ label{
 
 .ImageProduitGrande{
     width: 20vw;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+.ImageProduitMoyenne{
+    width: 10vw;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+.ImageProduitPetit{
+    height: 8vh;
     margin-right: 20px;
     border-radius: 10px;
 }
@@ -127,8 +143,25 @@ label{
     margin-top: 25px;
 }
 
-.BoutonConfirmer{
+.BoutonsConfirmer{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+}
+
+.mr-1{
+    margin-right: 10px;
+}
+
+.mr-3{
+    margin-right: 30px;
+}
+
+.large{
+    width: 60vw;
+}
+
+.space{
+    display: flex;
     justify-content: space-around;
 }

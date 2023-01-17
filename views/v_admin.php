@@ -5,12 +5,12 @@
 <h1>Bienvenue sur votre espace compte admin <?php echo $pseudo; ?> </h1>
 
 
-<div class="row align-items-start">
-    <a class="col" href="index.php?action=deconnexion"><button type="button" class="margeTop btn btn-secondary btn-lg">Se déconnecter</button></a>
+<div class="center mb-5">
+    <a class="mb-1" href="index.php?action=deconnexion"><button type="button" class="margeTop large btn btn-secondary btn-lg">Se déconnecter</button></a>
 
-    <a class="col" href="index.php?action=listeCommandes"><button type="button" class="margeTop btn btn-secondary btn-lg">Confirmer les commandes</button></a>
+    <a class="mb-1" href="index.php?action=listeCommandes"><button type="button" class="margeTop large btn btn-secondary btn-lg">Confirmer les commandes</button></a>
 
-    <a class="col" href="index.php?action=gererStock"><button type="button" class="margeTop btn btn-secondary btn-lg">Gérer les stocks</button></a>
+    <a class="mb-1" href="index.php?action=gererStock"><button type="button" class="margeTop btn large btn-secondary btn-lg">Gérer les stocks</button></a>
 </div>
 
 <div class="margeTop">
@@ -22,7 +22,7 @@
     </p>
 
     <p>
-        <a href="index.php?action=nettoyerBDD"><button type="button" class="btn btn-secondary btn-lg">Supprimer les commandes inachevés</button></a>.
+        <a href="index.php?action=nettoyerBDD"><button type="button" class="large btn btn-secondary btn-lg">Supprimer les commandes inachevés</button></a>.
     </p>
 </div>
 

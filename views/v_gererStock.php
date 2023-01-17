@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 
 
-<h1>Tous les produits :</h1>
+<h1 class="mb-5">Tous les produits :</h1>
 
 
 <?php
@@ -25,7 +25,7 @@ foreach ($produits as $d) {
 
     echo
     "<div class=\"ProduitPanier\">
-        <div><img class=\"ImageProduit\" src=\"" . IMAGE . $d['image'] . "\" alt=\"image : " . $d['name'] . "\"></div>
+        <div><img class=\"ImageProduitMoyenne\" src=\"" . IMAGE . $d['image'] . "\" alt=\"image : " . $d['name'] . "\"></div>
 
         <div>
             <a href=\"index.php?action=" . $action . "&id=" . $d['id'] . "\"><h2>" . $d['name'] . "</h2></a>
