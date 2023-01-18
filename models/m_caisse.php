@@ -27,7 +27,8 @@ class Caisse extends Model
         else return;
     }
 
-    function nouvelleAdresse($first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email)
+    //Crée une nouvelle delivery_adress
+    function creerAdresse($first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email)
     {
         //on récupère l'id existant le plus élévé
         $sql = 'SELECT max(id) FROM delivery_addresses';
@@ -45,11 +46,27 @@ class Caisse extends Model
         return $id_max;
     }
 
+    //Renvoi l'id d'une delivery_adress avec les infos paasé en paramètre
+    function getIDDeliveryAdresse($first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email)
+    {
+        //on récupère l'id de l'adresse qui possèdes les infos passé en paramètre
+        $sql = 'SELECT id FROM delivery_addresses
+                WHERE firstname=? and lastname=? and add1=? and add2=? and city=? and postcode=? and phone=? and email=?';
+        $id = $this->executerRequete($sql, array($first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email));
+        if ($id->rowCount() == 1) {
+            $id = $id->fetch()['id'];
+        } else {
+            $id = $this->creerAdresse($first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email);
+        }
 
+        return $id;
+    }
+
+
+    //Change l'adresse d'une commande
     function changerAdresse($idPanier, $first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email)
     {
-
-        $idAdresse = $this->nouvelleAdresse($first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email);
+        $idAdresse = $this->getIDDeliveryAdresse($first_name, $last_name, $add1, $add2, $city, $postcode, $phone, $email);
 
         $sql = 'UPDATE orders
             SET delivery_add_id = ?
@@ -59,6 +76,8 @@ class Caisse extends Model
         $this->changerStatut($idPanier, 1);
     }
 
+
+    //Change les statuts d'une commande
     function changerStatut($idPanier, $statut)
     {
         $sql = 'UPDATE orders O
@@ -67,6 +86,7 @@ class Caisse extends Model
         $this->executerRequete($sql, array($statut, $idPanier));
     }
 
+    //Change le mode de paiement d'une commande
     function changerModeDePaiement($idPanier, $mode)
     {
         $sql = 'UPDATE orders O
@@ -74,6 +94,7 @@ class Caisse extends Model
             WHERE id=?';
         $this->executerRequete($sql, array($mode, $idPanier));
     }
+
 
     function changerQuantiteStock($idProduit, $nvQuantite)
     {
@@ -95,6 +116,7 @@ class Caisse extends Model
         }
     }
 
+    //Termine un commande, c'est dire mettre son statut à 2, diminiuer les stocks et vider la variable de session
     function finirCommande($idCommande)
     {
         $this->changerStatut($idCommande, 2);

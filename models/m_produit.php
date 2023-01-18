@@ -16,13 +16,14 @@ class Produit extends Model
     function getProduit($categorie, $idProduit)
     {
         $sql = 'select id, name, description, image, price, quantity from products'
-             .' where cat_id = ? and id = ?';
+            . ' where cat_id = ? and id = ?';
         $produit = $this->executerRequete($sql, array($categorie, $idProduit));
 
         if ($produit->rowCount() == 1)   return $produit->fetch(); // Accès à la première ligne de résultat 
         else throw new Exception("Aucune produit de la catégorie '$categorie' ne correspond à l'identifiant '$idProduit'");
     }
 
+    //Renvoi la liste des commantaire du produit
     function getCommentaire($idProduit)
     {
         $sql = 'select name_user, photo_user, stars, title, description from reviews

@@ -4,8 +4,8 @@ abstract class Model
 {
     // Objet PDO d'accès à la BD 
     private $bdd;
-    // Exécute une requête SQL éventuellement paramétrée
 
+    // Exécute une requête SQL éventuellement paramétrée
     protected function executerRequete($sql, $params = null)
     {
         if ($params == null) {
@@ -15,7 +15,7 @@ abstract class Model
             $resultat->execute($params);
         }
         return $resultat;
-    } //vardump pour débugage
+    }
 
     // Renvoie un objet de connexion à la BD en initialisant la connexion au besoin 
     private function getBdd()
@@ -30,6 +30,4 @@ abstract class Model
         }
         return $this->bdd;
     }
-
-    
 }
