@@ -27,7 +27,7 @@ class C_Connexion
         $vue = new View("connexion");
         $vue->generer(array('Co' => $msg));
     }
-    
+
 
     public function enregistrement()
     {
@@ -105,7 +105,8 @@ class C_Connexion
         return ("<h4 class = \"alert alert-warning\"> Formulaire invalide : $msg_erreur </h4>");
     }
 
-    public function majCompte($infos, $compte){
+    public function majCompte($infos, $compte)
+    {
         $nom =  $_POST['Nom'];
         $prenom =  $_POST['Prenom'];
         $rue = $_POST['Rue'];
@@ -116,34 +117,32 @@ class C_Connexion
         $mail = $_POST['Mail'];
         $pseudo = $infos['pseudo'];
 
-        if(!empty($_POST['Password'])){
+        if (!empty($_POST['Password'])) {
             $pwd = $_POST['Password'];
             $logins = array($pseudo, $pwd, $_SESSION['id']);
             $compte->majLogins($logins);
         }
 
-        $customer = array($nom, $prenom, $rue, $c_rue, $ville, $code_p, $tel, $mail, $_SESSION['id']); 
+        $customer = array($nom, $prenom, $rue, $c_rue, $ville, $code_p, $tel, $mail, $_SESSION['id']);
         $compte->majCustomer($customer);
-        
-        
-
     }
 
     public function compte()
     {
-        $compte = new Compte();
-        $infos = $compte->getInfos();
-        print_r($infos);
-        if(isset($_POST['Enregistrer'])){
-            $this->majCompte($infos, $compte);
-            $infos = $compte->getInfos();
-        }
         if (isset($_SESSION['admin'])) {
             $vue = new View("admin");
+            $vue->generer(array());
         } else {
+            $compte = new Compte();
+            $infos = $compte->getInfos();
+            if (isset($_POST['Enregistrer'])) {
+                $this->majCompte($infos, $compte);
+                $infos = $compte->getInfos();
+            }
+
             $vue = new View("compte");
+            $vue->generer($infos);
         }
-        $vue->generer($infos);
     }
 
     public function deconnexion()

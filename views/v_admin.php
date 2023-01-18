@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 
-<h1>Bienvenue sur votre espace compte admin <?php echo $pseudo; ?> </h1>
+<h1>Bienvenue sur votre espace compte admin</h1>
 
 
 <div class="center mb-5">
