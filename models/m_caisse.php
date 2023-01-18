@@ -76,6 +76,8 @@ class Caisse extends Model
         $this->changerStatut($idPanier, 1);
     }
 
+
+    //Change les statuts d'une commande
     function changerStatut($idPanier, $statut)
     {
         $sql = 'UPDATE orders O
@@ -84,6 +86,7 @@ class Caisse extends Model
         $this->executerRequete($sql, array($statut, $idPanier));
     }
 
+    //Change le mode de paiement d'une commande
     function changerModeDePaiement($idPanier, $mode)
     {
         $sql = 'UPDATE orders O
@@ -91,6 +94,7 @@ class Caisse extends Model
             WHERE id=?';
         $this->executerRequete($sql, array($mode, $idPanier));
     }
+
 
     function changerQuantiteStock($idProduit, $nvQuantite)
     {
@@ -112,6 +116,7 @@ class Caisse extends Model
         }
     }
 
+    //Termine un commande, c'est dire mettre son statut à 2, diminiuer les stocks et vider la variable de session
     function finirCommande($idCommande)
     {
         $this->changerStatut($idCommande, 2);

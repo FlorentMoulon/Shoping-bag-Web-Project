@@ -17,7 +17,7 @@ class Admin extends Model
     }
 
 
-
+    // Renovoie les ids des dommande en cours
     function getIdCommandes()
     {
         $sql = 'select id from orders
@@ -26,6 +26,7 @@ class Admin extends Model
         return   $commandes;
     }
 
+    // Récupère les produits du panier d'une commandes
     function getPanier($idCommande)
     {
         $sql = 'select P.cat_id, P.id, P.name, P.description, P.image, P.price, OI.quantity from orders O
@@ -37,6 +38,7 @@ class Admin extends Model
         return   $panier;
     }
 
+    // Récupère l'adresse de livraison d'une commande
     function getAdresse($idCommande)
     {
         $sql = 'select D.firstname, D.lastname, D.add1, D.add2, D.city, D.postcode from orders O
@@ -48,6 +50,7 @@ class Admin extends Model
         else throw new Exception("Aucune adresse de livraison l'identifiant '$adresse'");
     }
 
+    // Clorure une commande, c'est à dire confirmer la préparation et la mettre au statut 10
     function cloturer($idCommande)
     {
         //ON met à jour le statut de la commande
@@ -56,6 +59,7 @@ class Admin extends Model
                 WHERE id=?';
         $this->executerRequete($sql, array($idCommande));
     }
+
 
     function changerQuantiteStock($idProduit, $nvQuantite)
     {
@@ -74,7 +78,7 @@ class Admin extends Model
     }
 
 
-
+    // Refuse une commande, c'est à dire annule la commande et restitu les sctocks
     function refuser($idCommande)
     {
         //On rajoute les quantité enlever du stock lors de la commande
@@ -95,12 +99,15 @@ class Admin extends Model
         $this->executerRequete($sql, array($idCommande));
     }
 
+    //Retourne tous les produits
     function getProduits()
     {
         $sql = 'SELECT id, cat_id, name, image, price, quantity  FROM products';
         return  $this->executerRequete($sql, array());
     }
 
+
+    //Supprimere les commandes inachevé de plus d'un jour et leurs informations de la base de données.
     function nettoyerBDD()
     {
         //On récupère les commandes concernés

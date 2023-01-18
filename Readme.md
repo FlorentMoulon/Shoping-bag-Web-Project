@@ -12,8 +12,8 @@ Ce site marchand est codé en HTML et PHP avec une architecture MVC. Le CCS est 
 - **Fruits Secs :** Page avec la liste de toute les fruits secs.
   - **Fruit Sec :** Page spécifique au fruit sec sélectionné, avec les commentaires et les infos.
 - **Connexion :**
-  - **Mon compte :**
-  - **Page admin :**
+  - **Mon compte :** Déconnexion et modification des infos personnelles
+  - **Page admin :** Déconnexion
     - **Commandes à préparer :** Liste de commande de statut = 2 (celle qu'il faut préparer et envoyer).
       - **Confirmer commande :** Détail de la commande sélectionnée et bouton de refus et de confirmation.
     - **Gérer les stocks :** Liste des produits et formulaire pour gérer les prix et les quantités.

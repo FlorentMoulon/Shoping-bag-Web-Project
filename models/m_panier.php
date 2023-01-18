@@ -17,6 +17,7 @@ class Panier extends Model
         return   $panier;
     }
 
+
     public function get_delivery_id($id_panier)
     {
         $sql = "SELECT delivery_add_id
@@ -29,8 +30,10 @@ class Panier extends Model
         else throw new Exception("Erreur dans la récupération de l'id delivery adress");
     }
 
+
     public function get_adresse_commande($id_delivery)
-    { //Récupération d'une adresse a partir de l'id associée
+    {
+        //Récupération d'une adresse a partir de l'id associée
         $sql = "SELECT firstname, lastname, add1, add2, city, postcode, phone, email
                 FROM delivery_addresses
                 WHERE id = ?";
@@ -39,6 +42,7 @@ class Panier extends Model
         if ($commande_id->rowCount() == 1)   return $commande_id->fetch(); // Accès à la première ligne de résultat 
         else throw new Exception("Erreur dans la récupération de l'id de la commande");
     }
+
 
     // Renvoie le prix total de la commande
     function getTotal($idPanier)
@@ -51,6 +55,8 @@ class Panier extends Model
         else throw new Exception("Aucune commande ne correspond à l'identifiant '$idPanier'");
     }
 
+
+    // Calcule le total d'une commande et le met à jour dans la BDD
     function changerTotal($idPanier)
     {
         //on récupère les produits (quantité et prix)
@@ -75,7 +81,7 @@ class Panier extends Model
 
 
 
-
+    //Créer une nouvelle commande sur la BDD
     function creerPanier()
     {
         //on récupère l'id existant le plus élévé
@@ -102,6 +108,8 @@ class Panier extends Model
         return $id_max;
     }
 
+
+    //Ajoute un produit au panier
     function ajouterProduit($idPanier, $idProduit, $quantite)
     {
         //on regarde s'il y a déjà un produit avec cette id dans le panier
@@ -123,7 +131,6 @@ class Panier extends Model
             //on ajoute 1 pour avoir avoir un id libre
             $id_max++;
 
-
             $sql = 'insert into orderitems
                 values(?,?,?,?)';
             $this->executerRequete($sql, array($id_max, $idPanier, $idProduit, $quantite));
@@ -132,6 +139,7 @@ class Panier extends Model
         $this->changerTotal($idPanier);
     }
 
+    //Supprime un produit du panier
     function supprimerProduit($idPanier, $idProduit)
     {
         $sql = 'DELETE from orderitems
@@ -141,6 +149,7 @@ class Panier extends Model
         $this->changerTotal($idPanier);
     }
 
+    // Change la quantité d'un prosuit dans le panier
     function changerQuantite($idPanier, $idProduit, $nvQuantite)
     {
         $sql = 'UPDATE orderitems
