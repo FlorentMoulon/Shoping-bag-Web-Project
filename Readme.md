@@ -1,6 +1,6 @@
 # Technologie
 
-Ce site marchand est codé en HTML et PHP avec une architecture MVC. Le CCS est basé sur Bootstrap 5 et la base de donnée sur MySQL. Pour la génération de facture on utilise la librairie fpdf.
+Ce site marchand est codé en HTML et PHP avec une architecture MVC. Le CCS est basé sur Bootstrap 5 et la base de donnée sur MySQL. Pour la génération de facture nous utilisons la librairie fpdf.
 
 # Plan du site
 
