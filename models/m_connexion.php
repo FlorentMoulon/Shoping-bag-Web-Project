@@ -96,7 +96,7 @@ class Compte extends Model{
     public function getInfos(){
         $pseudo = $this->getPseudo($_SESSION['id']);
         if(isset($_SESSION['admin'])){
-            $prenom = $nom = $rue = $c_rue = $ville = $code_p = $tel = $mail = $pseudo = "";
+            $prenom = $nom = $rue = $c_rue = $ville = $code_p = $tel = $mail = "";
             $donnees = array(
                 /*'msg' => $msg,*/
                 'nom' => $nom,

@@ -133,6 +133,7 @@ class C_Connexion
     {
         $compte = new Compte();
         $infos = $compte->getInfos();
+        print_r($infos);
         if(isset($_POST['Enregistrer'])){
             $this->majCompte($infos, $compte);
             $infos = $compte->getInfos();
