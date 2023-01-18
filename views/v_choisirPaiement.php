@@ -2,13 +2,13 @@
 
 <?php ob_start(); ?>
 
-<h1 class="mb-5">Veuiller Choisir un mode de paiment</h1>
+<h1 class="mb-5">Veuillez choisir un mode de paiement</h1>
 
 
 
 <div class="col-12 mt-4">
     <div class="card p-3">
-        <p class="mb-0 fw-bold h4">Méthodes de paiement </p>
+        <p class="mb-0 fw-bold h4">Mode de paiement :</p>
     </div>
 </div>
 <div class="col-12 card p-3">

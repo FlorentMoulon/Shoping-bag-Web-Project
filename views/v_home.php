@@ -2,12 +2,7 @@
 
 <?php ob_start(); ?>
 
-<h1>Bienvenue!!</h1>
-<p>
-    Bienvenue sur ISIWeb4Shop .
-    Cliquez sur un menu pour découvrir notre offre. Nous avons en stock
-    une large gamme de produits.
-</p>
+<h4 class ="mb-2">Bienvenue sur l'e-shop ISIWEB4SHOP!</h4>
 
 
 <div id="Accueil" class="carousel slide" data-bs-ride="carousel">

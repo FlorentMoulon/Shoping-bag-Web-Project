@@ -2,14 +2,14 @@
 
 <?php ob_start(); ?>
 
-<h1 class="mb-4">Veuiller Choisir une adresse</h1>
+<h3 class="mb-4">Veuillez choisir une adresse</h3>
 
 <span class="row align-items-start">
     <div class="col">
         <form method="POST" action="index.php?action=NvAdresse">
-            <h2 class="mb-1">Rentrer une nouvelle adresse</h2>
+            <h4 class="mb-1">Nouvelle adresse</h4>
 
-            <h4>Adresse</h4>
+            <h5>Adresse</h5>
             <div class="form-inline ligne_form">
                 <input class="form-control border-secondary" type="text" placeholder="Adresse" id="Rue" name="Rue" required>
                 <input class="form-control border-secondary" type="text" placeholder="Complément d'adresse" id="C_Rue" name="C_Rue" required>
@@ -19,7 +19,7 @@
                 <input class="form-control border-secondary" type="text" placeholder="Ville" id="Ville" name="Ville" required>
             </div>
 
-            <h4>Contact</h4>
+            <h5>Contact</h5>
             <div class="form-inline ligne_form">
                 <input class="form-control border-secondary" type="text" placeholder="Nom" class="form-control" id="Nom" name="Nom" required>
                 <input class="form-control border-secondary" type="text" placeholder="Prénom" class="form-control" id="Prenom" name="Prenom" required>
@@ -37,14 +37,14 @@
 
     <div class="col">
         <form method="POST" action="index.php?action=AncienneAdresse">
-            <h2 class="mb-5">Ou utiliser l'adresse de votre compte</h2>
+            <h4 class="mb-5">Adresse de votre compte</h4>
             <?php
             if ($adresse == 0) {
                 echo "Vous n'avez pas d'adresse enregistrer ou vous n'êtes pas connecté. </br>";
             } else {
                 echo
                 "<div>
-                    <h4 class=\"mb-3\">Adresse</h4>
+                    <h5 class=\"mb-3\">Adresse</h5>
                     <div class=\"mb-5 row align-items-start\">
                         <div class=\"col\">
                             Nom :<br>

@@ -27,6 +27,7 @@ class C_Connexion
         $vue = new View("connexion");
         $vue->generer(array('Co' => $msg));
     }
+    
 
     public function enregistrement()
     {
@@ -86,8 +87,7 @@ class C_Connexion
         }
     }
 
-    //Vérifie la validité d'un champ obligatoire en renvoyant celui-ci ainsi que 
-    //Le message d'erreur s'il y en a un d'associé 
+    //Vérifie la validité d'un champ
     private function verifie_mdp()
     {
         return ($_POST['Password'] == $_POST['C_Password']);
@@ -99,21 +99,50 @@ class C_Connexion
         return $enr->verifieMail($mail);
     }
 
+    //Genere une erreur en fonction 
     private function genere_erreur($msg_erreur)
     {
-        return ("<h4 class = \" alert-warning\"> Formulaire invalide : $msg_erreur </h4>");
+        return ("<h4 class = \"alert alert-warning\"> Formulaire invalide : $msg_erreur </h4>");
+    }
+
+    public function majCompte($infos, $compte){
+        $nom =  $_POST['Nom'];
+        $prenom =  $_POST['Prenom'];
+        $rue = $_POST['Rue'];
+        $c_rue = $_POST['C_Rue'];
+        $ville = $_POST['Ville'];
+        $code_p = $_POST['Postal'];
+        $tel = $_POST['Telephone'];
+        $mail = $_POST['Mail'];
+        $pseudo = $infos['pseudo'];
+
+        if(!empty($_POST['Password'])){
+            $pwd = $_POST['Password'];
+            $logins = array($pseudo, $pwd, $_SESSION['id']);
+            $compte->majLogins($logins);
+        }
+
+        $customer = array($nom, $prenom, $rue, $c_rue, $ville, $code_p, $tel, $mail, $_SESSION['id']); 
+        $compte->majCustomer($customer);
+        
+        
+
     }
 
     public function compte()
     {
+        $compte = new Compte();
+        $infos = $compte->getInfos();
+        if(isset($_POST['Enregistrer'])){
+            $this->majCompte($infos, $compte);
+            $infos = $compte->getInfos();
+        }
         if (isset($_SESSION['admin'])) {
             $vue = new View("admin");
         } else {
             $vue = new View("compte");
         }
-        $compte = new Compte();
-        $username = $compte->getPseudo();
-        $vue->generer(array('pseudo' => $username));
+        $vue->generer($infos);
     }
 
     public function deconnexion()

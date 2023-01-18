@@ -39,7 +39,7 @@ class Routeur
     // Traite une requête entrante 
     public function routerRequete()
     {
-        try {
+        /*try {*/
             if (isset($_GET['action'])) {
                 //Page des boissons
                 if ($_GET['action'] == 'boissons') {
@@ -78,7 +78,7 @@ class Routeur
                     $this->c_connexion->compte();
                 } else if ($_GET['action'] == 'deconnexion') {
                     $this->c_connexion->deconnexion();
-                }
+                } 
 
                 //Admin
                 else if ($_GET['action'] == 'verifierCommande') {
@@ -129,9 +129,9 @@ class Routeur
             } else { // aucune action définie : affichage de l'accueil
                 $this->c_home->home();
             }
-        } catch (Exception $e) {
+        /*} catch (Exception $e) {
             $this->erreur($e->getMessage());
-        }
+        }*/
     }
 
 

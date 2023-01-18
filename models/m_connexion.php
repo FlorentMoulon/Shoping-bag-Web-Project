@@ -48,7 +48,6 @@ class Enregistrement extends Model{
         VALUES (?,?,?,?,?,?,?,?,?,?)";
 
         $tab_customer =  array_merge(array($id_customer), $array_customer, array(1));
-        print_r($tab_customer);
         $this->executerRequete($insert_customer, $tab_customer);
 
 
@@ -60,7 +59,6 @@ class Enregistrement extends Model{
         $tab_logins = array_merge(array($id_log, $id_customer), $array_logins);
 
         $this->executerRequete($insert_logins, $tab_logins);
-        
         $_SESSION['id_customer'] = $id_customer;
         return "<p class = \" success-warning\"> Compte correctement créé</p>";
     }
@@ -76,6 +74,72 @@ class Enregistrement extends Model{
 }
 
 class Compte extends Model{
+    function majLogins($logins){
+        $sql = "UPDATE logins 
+                SET username = ?, password = ?
+                WHERE id = ?";
+        $this->executerRequete($sql, $logins);
+    }
+
+    function majCustomer($customer){
+        $sql_delivery = "UPDATE delivery_addresses
+                        SET firstname = ?, lastname = ?, add1 =? , add2 = ?, city = ?, postcode = ?, phone = ?, email = ?
+                        WHERE id =?";
+        $sql_customers = "UPDATE customers
+                        SET forname = ?, surname = ?, add1 =? , add2 = ?, add3 = ?, postcode = ?, phone = ?, email = ?
+                        WHERE id =?";
+
+        $this->executerRequete($sql_customers, $customer);
+        $this->executerRequete($sql_delivery, $customer);
+    }
+
+    public function getInfos(){
+        $pseudo = $this->getPseudo($_SESSION['id']);
+        if(isset($_SESSION['admin'])){
+            $prenom = $nom = $rue = $c_rue = $ville = $code_p = $tel = $mail = $pseudo = "";
+            $donnees = array(
+                /*'msg' => $msg,*/
+                'nom' => $nom,
+                'prenom' => $prenom,
+                'rue' => $rue,
+                'c_rue' => $c_rue,
+                'ville' => $ville,
+                'code_p' => $code_p,
+                'tel' => $tel,
+                'mail' => $mail,
+                'pseudo' => $pseudo
+            );
+        }
+        else{
+            $tab_infos = $this->getAdresse($_SESSION['id']);
+            $donnees = array(
+                /*'msg' => $msg,*/
+                'nom' => $tab_infos['surname'],
+                'prenom' => $tab_infos['forname'],
+                'rue' => $tab_infos['add1'],
+                'c_rue' => $tab_infos['add2'],
+                'ville' => $tab_infos['add3'],
+                'code_p' => $tab_infos['postcode'],
+                'tel' => $tab_infos['phone'],
+                'mail' => $tab_infos['email'],
+                'pseudo' => $pseudo
+            );
+            return $donnees;
+            //$msg =""; 
+        }   
+    }
+
+    
+
+    function getAdresse($idUser){
+        $sql = 'select forname, surname, phone, email, add1, add2, add3, postcode from customers
+            where id = ?';
+        $adresse = $this->executerRequete($sql, array($idUser));
+
+        if ($adresse->rowCount() == 1) return $adresse->fetch(); // Accès à la première ligne de résultat
+        else return;
+    }
+
     function getPseudo(){
         if (isset($_SESSION['admin'])){
             $sql = "SELECT username
@@ -93,5 +157,6 @@ class Compte extends Model{
         if ($pseudo->rowCount() == 1)   return $pseudo->fetch()['username']; // Accès à la première ligne de résultat 
         else throw new Exception("Erreur dans l'accès au compte");
     }
+
 }
 

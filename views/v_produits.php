@@ -40,16 +40,16 @@ foreach ($produits as $d) {
         <div><img class=\"ImageProduitMoyenne\" src=\"" . IMAGE . $d['image'] . "\" alt=\"image : " . $d['name'] . "\"></div>
         <div class=\"InfoProduit\">
             <div class=\"ligne center\">
-                <h2 class=\"mr-3\">" . $d['name'] . "</h2>
-                <h4 class=\"Alert\">" . $comment . "</h4>
+                <h3 class=\"mr-3\">" . $d['name'] . "</h3>
+                <h6 class=\"Alert \">" . $comment . "</h6>
             </div>
 
-            <p>" .  $d['description'] . "</p>
-            
             <div class=\"ligne\">
-                <p class=\"mr-3\"><b>Notre prix : " . $d['price'] . "€</b></p>
-                <a href=\"index.php?action=" . $action . "&id=" . $d['id'] . "\"><button type=\"button\" class=\"btn btn-secondary\">Acheter</button></a>
+                <p class= \"mr-3 d-none d-none d-lg-block\">" .  $d['description'] . "</p>
+                <a class=\" pull-righ\" href=\"index.php?action=" . $action . "&id=" . $d['id'] . "\"><button type=\"button\" class=\"btn btn-secondary\">Acheter</button></a>
             </div>
+            <p class=\"mr-3\"><b>Notre prix : " . $d['price'] . "€</b></p>
+                
         </div>
     </div>";
 }

@@ -72,7 +72,7 @@ class C_Caisse
 
         //On change le mode de paiement
         $this->caisse->changerModeDePaiement($idPanier, 'cheque');
-        //On fini la comande
+        //On fini la commande
         $this->caisse->finirCommande($idPanier);
 
         //On génére la facture

@@ -2,9 +2,9 @@
 
 <?php ob_start(); ?>
 
-<p>Commande effectué !</p>
+<p>Commande effectuée !</p>
 
-<h1>Veiller suivre les instructions pour procéder au paiement</h1>
+<h1>Veuillez suivre les instructions pour procéder au paiement</h1>
 
 Remplisser le chèque avec les informations suivantes :<br><br>
 
@@ -25,7 +25,7 @@ Remplisser le chèque avec les informations suivantes :<br><br>
 
 
 <p>
-    Une fois rempli, envoyer le chèque par courrier postal à : <b>15 Bd André Latarjet, 69100 Villeurbanne</b>
+    Une fois rempli, envoyez le chèque par courrier postal à : <b>15 Bd André Latarjet, 69100 Villeurbanne</b>
 </p>
 <p>
     N'oubliez pas de timbrer votre enveloppe et de noter une adresse de retour, afin que vous puissiez le renvoyer en cas d'erreur ou de problème.
