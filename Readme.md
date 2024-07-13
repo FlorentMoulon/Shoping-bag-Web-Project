@@ -25,6 +25,21 @@ Ce site marchand est codé en HTML et PHP avec une architecture MVC. Le CCS est 
             - Chèque : Confirmation du paiement et création de la facture.
 
 
+# Capture d'écran
+### Liste des produits
+![](Screenshot/produit-liste.png)
+### Page d'un produit
+![](Screenshot/produit.png)
+### Création d'un compte
+![](Screenshot/creation-compte.png)
+### Page de connexion
+![](Screenshot/connexion.png)
+### Panier
+![](Screenshot/panier.png)
+### Livraison
+![](Screenshot/livraison.png)
+
+
 # Auteur
 
 Projet réalisé par Laqueuvre Damien et Florent Moulon.
