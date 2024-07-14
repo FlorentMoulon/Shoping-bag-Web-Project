@@ -38,8 +38,3 @@ Ce site marchand est codé en HTML et PHP avec une architecture MVC. Le CCS est 
 ![](Screenshot/panier.png)
 ### Livraison
 ![](Screenshot/livraison.png)
-
-
-# Auteur
-
-Projet réalisé par Laqueuvre Damien et Florent Moulon.
